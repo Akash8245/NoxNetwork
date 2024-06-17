@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Navbar with Logo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-link, .link {
+            color: black;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .link {
+            background-color: lightblue;
+            border: 2px solid black;
+            border-radius: 50px;
+        }
+
+        .nav-link:hover {
+            color: gold;
+        }
+
+        .link:hover {
+            background-color: gold;
+            color: white;
+        }
+
+        .content {
+            padding-top: 70px; 
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .navbar .nav-toggle-btn {
+            display: none;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                margin-left: 0;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .navbar .nav-buttons {
+                display: none; 
+            }
+
+            .navbar .nav-buttons.active {
+                display: flex; 
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: white;
+                width: 100%;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar .nav-link, .navbar .link {
+                margin: 5px 0;
+                padding: 5px 10px;
+                border-radius: 0;
+            }
+
+            .navbar .nav-toggle-btn {
+                display: block;
+                left: 30px;
+            }
+
+            .nav-toggle-btn {
+                right: 5%;
+            }
+
+            .toggle-btn {
+                top: 70px;
+                left: 10px;
+            }
+
+            .footer-container {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                max-width: 200px;
+                margin: auto;
+                padding: 0 5px;
+            }
+        }
+
+        .footer {
+            background-color: #FFFDD0;
+            color: #000;
+            padding: 40px 0;
+            text-align: left;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1600px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .footer-column {
+            flex: 0;
+            min-width: 320px;
+            margin: 20px 0;
+        }
+
+        .footer-column h3 {
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: gold;
+        }
+
+        .footer-column .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 23px;
+        }
+
+        .footer-column .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #000;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+
+        .footer-column .social-icons a:hover {
+            color: #000; 
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border-top: 1px solid gold;
+            color: #000;
+            font-size: 14px;
+        }
+
+        .footer-bottom a {
+            color: gold;
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        .wrapper {
+            width: 400px;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid black;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .input-field {
+            position: relative;
+            border-bottom: 2px solid #ccc;
+            margin: 15px 0;
+        }
+
+        .input-field label {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            color: #000;
+            font-size: 16px;
+            pointer-events: none;
+            transition: 0.15s ease;
+        }
+
+        .input-field input,
+        .input-field textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #000;
+        }
+
+        .input-field input {
+            height: 40px;
+        }
+
+        .input-field textarea {
+            height: 30px;
+            resize: vertical;
+        }
+
+        .input-field input:focus~label,
+        .input-field input:valid~label,
+        .input-field textarea:focus~label,
+        .input-field textarea:valid~label {
+            font-size: 0.8rem;
+            top: 10px;
+            transform: translateY(-120%);
+        }
+
+        .forget {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 25px 0 35px 0;
+            color: gold;
+        }
+
+        #remember {
+            accent-color: gold;
+        }
+
+        .forget label {
+            display: flex;
+            align-items: center;
+        }
+
+        .forget label p {
+            margin-left: 12px;
+        }
+
+        .wrapper a {
+            color: gold;
+            text-decoration: none;
+        }
+
+        .wrapper a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background: #FFFDD0;
+            color: #000;
+            font-weight: 600;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 16px;
+            border: 2px solid transparent;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            color: gold;
+            border-color: gold;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 30px;
+            color: #000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(110vh - 60px);
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="1.png" alt="Logo" class="logo">
+        <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
+        <div class="nav-buttons">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/dashboard/" class="nav-link">Courses</a>
+            <a href="/about/" class="nav-link">About</a>
+            <a href="/contact/" class="nav-link">Contact</a>
+           
+        </div>
+    </div>
+    
+    <h1>‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </h1>
+
+    <div class="container">
+        <div class="wrapper">
+            <form action="/contact/" method="POST">
+                {% csrf_token %}
+
+                <h2>Contact Us</h2>
+                <div class="input-field">
+                    <input type="text" name="name" required>
+                    <label>Enter your Name</label>
+                </div>
+                <div class="input-field">
+                    <input type="email" name="email" required>
+                    <label>Enter your Email</label>
+                </div>
+                <div class="input-field">
+                    <input type="number" name="phone_no" required>
+                    <label>Enter your Phone Number</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="city" required>
+                    <label>Enter your City</label>
+                </div>
+                <div class="input-field">
+                    <textarea name="message" required></textarea>
+                    <label>Enter your Message</label>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>The NOX NETWORK</h3>
+                <p>The Nox Network is laying the groundwork for learners of all ages, offering a platform where individuals can come together to sharpen their skills and expand their knowledge.</p>
+                <div class="social-icons">
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/facebook-new.png" alt="Facebook"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/instagram-new.png" alt="Instagram"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/youtube-play.png" alt="YouTube"></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <a href="/">Home</a><br>
+                <a href="/dashboard/">Course</a><br>
+                <a href="/contact/">Contact Us</a><br>
+                <a href="/dashboard/">Enroll Now</a><br>
+                 <a href="/about/">About Us</a><br>
+                <a href="/login/">Login</a>
+            </div>
+            <div class="footer-column">
+                <h3>Policys</h3>
+                <a href="/returnpolicy/">Return Policy</a><br>
+                <a href="/termsandcondition/">Terms And Condition</a><br>
+                <a href="/privacypolicy/">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            All Rights Reserved © 2024 | <a href="#">Nox Network</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var content = document.getElementById('content');
+            var navButtons = document.querySelector('.nav-buttons');
+            var navToggleBtn = document.querySelector('.nav-toggle-btn');
+            var sidebarToggleBtn = document.querySelector('.toggle-btn');
+            
+            sidebar.classList.toggle('active');
+            content.classList.toggle('shifted');
+            
+            if (sidebar.classList.contains('active')) {
+                navButtons.classList.remove('active');
+                navToggleBtn.style.display = 'none';
+            } else {
+                navToggleBtn.style.display = 'block';
+            }
+        }
+
+        function toggleNavButtons() {
+            var navButtons = document.querySelector('.nav-buttons');
+            var sidebar = document.getElementById('sidebar');
+            var sidebarToggleBtn = document.querySelector('.toggle-btn');
+            
+            navButtons.classList.toggle('active');
+            
+            if (navButtons.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                sidebarToggleBtn.style.display = 'none';
+            } else {
+                sidebarToggleBtn.style.display = 'block';
+            }
+        }
+
+        function toggleDropdown(event) {
+            event.preventDefault();
+            var parentLi = event.target.parentElement;
+            parentLi.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

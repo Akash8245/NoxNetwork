@@ -1,0 +1,709 @@
+<!doctype html>
+<html >
+<head>
+
+
+<base href="https://joshguru.in/">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/boxicons.min.css">
+<link rel="stylesheet" href="assets/css/flaticon.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/odometer.min.css">
+<link rel="stylesheet" href="assets/css/meanmenu.min.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/css/nice-select.min.css">
+<link rel="stylesheet" href="assets/css/viewer.min.css">
+<!--<link rel="stylesheet" href="assets/css/slick.min.css">-->
+<link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<!--<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+p
+{
+        color: black;
+}
+
+   
+
+<style >
+.bundel_courses_purchase_box {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.courses_purchase_video {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.courses_purchase_video p {
+    background-color: #ff783d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.courses_purchase_video h3 {
+    margin: 0;
+}
+
+.purchase-details {
+    margin-top: 20px;
+}
+
+.purchase-details h6 {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.customBtn2 {
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: lightblue;
+    font-size: 16px;
+    border: 2px solid gold;
+    border-radius: 5px;
+    color: #ff783d;
+    margin-bottom: 10px !important;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.customBtn2:hover {
+    background-color: gold;
+    color: white;
+}
+
+.customBtn {
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: gold;
+    font-size: 16px;
+    border: 2px solid lightblue;
+    border-radius: 5px;
+    color: #ff783d;
+    margin-bottom: 10px !important;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.customBtn:hover {
+    background-color: #ff783d;
+    color: white;
+}
+
+.navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-link, .link {
+            color: black;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .link {
+            background-color: lightblue;
+            border: 2px solid black;
+            border-radius: 50px;
+        }
+
+        .nav-link:hover {
+            color: gold;
+        }
+
+        .link:hover {
+            background-color: gold;
+            color: white;
+        }
+
+        .content {
+            padding-top: 70px; 
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+                       .navbar .nav-toggle-btn {
+            display: none;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 20px;margin-right: 60px;
+        }
+
+        @media (max-width: 768px) {
+                       .content {
+                margin-left: 0;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .navbar .nav-buttons {
+                display: none; 
+            }
+
+            .navbar .nav-buttons.active {
+                display: flex; 
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: white;
+                width: 100%;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar .nav-link, .navbar .link {
+                margin: 5px 0;
+                padding: 5px 10px;
+                border-radius: 0;
+            }
+
+            .navbar .nav-toggle-btn {
+                display: block;
+                left: 30px;
+            }
+
+            .nav-toggle-btn {
+                right: 5%;
+            }
+
+            .toggle-btn {
+                top: 70px;
+                left: 10px;
+            }
+
+.Course_panel {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.Course_panel h5 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.list_course {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list_course li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.list_course li p {
+    margin: 0;
+    flex: 1;
+}
+
+.list_course li a {
+    margin-right: 10px;
+    color: #1179ef;
+    text-decoration: none;
+}
+
+.list_course li span {
+    color: #1179ef;
+}
+
+.fa.fa-play-circle {
+    margin-right: 5px;
+}
+
+</style>
+
+<div class="navbar">
+        <img src="{% static '1.png' %}" alt="Logo" class="logo">
+        <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
+        <div class="nav-buttons">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/dashboard/" class="nav-link">Courses</a>
+            <a href="/about/" class="nav-link">About</a>
+            <a href="/contact/" class="nav-link">Contact</a>
+          
+        </div>
+    </div>
+
+</header>
+
+
+
+<section class="Mini_Course_all">
+    <div class="container">
+        <div class="row main_row">
+            <div class="col-md-8">
+                <div class="box-left">
+                    <h2>Web Development Course </h2>
+                    <p>A course by <strong> Akash M </strong>, Trainer</p>
+                    <h6><span class="best_selling">Best seller</span><span class="language"><i class="fa fa-volume-up" aria-hidden="true"></i>English</span></h6>
+                    <!--<p></p>-->
+                   <iframe width="740" height="450" src="https://www.youtube.com/embed/QCF6g4-KfgY?si=KqiDcOxPj2x8wibF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                      <p></p>
+<p><span style="font-weight: bold;">Web Development</span></p>
+<p>A Web Development Course is an educational program designed to teach individuals the skills needed to create and maintain websites. This course covers various aspects of web development, including front-end and back-end technologies, web design principles, and web development tools. Students will learn HTML, CSS, and JavaScript to build and style web pages, and will gain hands-on experience with popular front-end frameworks like React, Angular, or Vue.js. The course also delves into server-side programming using languages such as Node.js, Python, Ruby, or PHP, teaching how to create RESTful APIs and manage databases. Additional topics include responsive web design, version control with Git, and deploying websites to live servers. Designed for beginners, intermediate, and advanced developers, this course offers practical projects, experienced instructors, community support, and flexible learning options to help students build a robust portfolio and advance their careers in web development.
+<br /></p>
+<p>✔ Customization</p>
+<p>✔ Ad Approval</p>
+<p> ✔ Community Engagement </p>
+<p>✔ Business Tools
+<br /></p>                      
+                      <h2>Course Content</h2>
+                    <div class="lecture-div">
+                        <ul>
+                           
+                            <li>Sections 1</li>
+                            <li>16 Lectures</li>
+                            <li>04 Hr. 31 Min. 01 Sec</li>
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="Course_panel" style="    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);">
+                        <h5>Course</h5>
+                        <ul class="list_course">
+                            <li class="active_Preview"><p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;text-decoration:none;
+    font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development course Preview</p> <a onclick="getvideo_product(10)"  data-toggle="modal" data-target="#exampleModal" style="text-decoration:none;" class="Click-here">Preview</a>        
+  <span style="color: #1179ef;">25:38</span></li>
+                            <li>
+                           
+                             
+                             
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 1</p>         
+  <span style="color: #1179ef;">03:41</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 2</p>         
+  <span style="color: #1179ef;">21:54</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 3</p>         
+  <span style="color: #1179ef;">25:38</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 4</p>         
+  <span style="color: #1179ef;">15:36</span></li>
+                                                         <li>
+                             
+                             </li>
+                            
+                            
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 5</p>         
+  <span style="color: #1179ef;">20:32</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 6</p>         
+  <span style="color: #1179ef;">19:55</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 7</p>         
+  <span style="color: #1179ef;">17:36</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 8</p>         
+  <span style="color: #1179ef;">17:48</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 9</p>         
+  <span style="color: #1179ef;">12:17</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 10</p>         
+  <span style="color: #1179ef;">13:01</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 11</p>         
+  <span style="color: #1179ef;">09:16</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 12</p>         
+  <span style="color: #1179ef;">14:30</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 13</p>         
+  <span style="color: #1179ef;">10:41</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 14</p>         
+  <span style="color: #1179ef;">34:14</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 15</p>         
+  <span style="color: #1179ef;">10:28</span></li>
+                                                       
+                           
+                              
+                                                            </li>
+                               <li>
+                                                              <p style="font-size: 15px;padding: 0px 0px !important;
+    margin: 0px 0px;width: 50%;font-weight: 500;"><i style="font-size: 17px;display: math;" class="fa fa-play-circle"></i>Web Development 16</p>         
+  <span style="color: #1179ef;">23:54</span></li>
+                                                       
+                           
+                              
+                                                      
+
+                         
+                           
+                            </li>
+                        </ul>
+                        
+                        
+                        
+                    </div>
+                    
+                   <p><span style="font-weight: bold;">More About Web Development</span></p>
+<p>Web development involves creating and maintaining websites and web applications for the internet. This includes a range of tasks such as web design, web content development, client-side/server-side scripting, and network security configuration. Web development can result in websites appearing in various locations and formats, such as on desktop browsers, mobile devices, and integrated within other applications or platforms. Additionally, web development encompasses the optimization of these websites for performance, usability, and compatibility across different devices and browsers.<br /></p> 
+                    
+                    
+                    <div class="Your_Instructor">
+                        <h2 class="heading_josh">Your Instructor</h2>
+                        <div class="profile_img">
+                            <img src=" ">
+                            <div>
+                                <h5>Akash M </h5>
+                                <span class="instructor-teacher">Instructor</span>
+                                <p>Trainer</p>
+                                
+                            </div>
+                        </div>
+                     <p style="color:black !important;"></p> 
+                    </div>
+                      
+                    <h2 class="heading_nox">What to anticipate from Nox Network Courses?</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="expert_courses_box">
+            <h5><i class="fa fa-certificate" aria-hidden="true"></i>Completion Certification</h5>
+            <p>Your journey with Nox Network is always acknowledged. Obtain a certificate upon completion and unlock doors to a promising future.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="expert_courses_box">
+            <h5><i class="fa fa-leanpub" aria-hidden="true"></i>Self-Paced Learning</h5>
+            <p>We strive to offer education that's accessible anytime, anywhere. Embrace the flexibility of learning at your own pace.</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="expert_courses_box">
+            <h5><i class="fa fa-users" aria-hidden="true"></i>Guidance from Seasoned Mentors</h5>
+            <p>Embark on the learning journey guided by seasoned mentors. At Nox Network, we believe in learning from the best to become the best.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="expert_courses_box">
+            <h5><i class="fa fa-cogs" aria-hidden="true"></i>In-Demand Practical Skills</h5>
+            <p>Nox Network courses predominantly focus on in-demand skills that sculpt a better version of yourself, ensuring you stay ahead in the future job market.</p>
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+            
+           <div class="col-md-3">
+    <div class="bundel_courses_purchase_box">
+        <div class="courses_purchase_video">
+            <p>SALE</p>
+            <h3><span class="cls_price" style="color: black;">₹799.00</span></h3>
+        </div>
+        <div class="courses_purchase_box buy-now-section addcourse">
+            <a style="cursor:pointer; border: 2px solid gold; " class="customBtn2 d-block">Add to Cart</a>
+            <button name="buy_now" style="cursor:pointer;background: #ff783d;
+                border: 2px solid lightblue; background-color:gold;" class="customBtn d-block btn btn-primary btn-block">Buy Now</button>
+            <div class="purchase-details">
+                <h6><i class="fa fa-language" aria-hidden="true"></i>Language-Hindi, English</h6>
+                <h6><i class="fa fa-file-text" aria-hidden="true"></i>Subtitles-No</h6>
+                <h6><i class="fa fa-tablet" aria-hidden="true"></i>Use on mobile tablet or desktop</h6>
+                <h6><i class="fa fa-clock-o" aria-hidden="true"></i>Life Time Access</h6>
+                <h6><i class="fa fa-certificate" aria-hidden="true"></i>Certificate For Completion</h6>
+                <h6><i class="fa fa-file-video-o" aria-hidden="true"></i>16</h6>
+                <h6><i class="fa fa-smile-o" aria-hidden="true"></i>Learn on</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+
+<style>
+
+ .footer {
+            background-color: #FFFDD0;
+            color: #000;
+            padding: 40px 0;
+            text-align: left;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1600px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .footer-column {
+            flex:0;
+            min-width: 320px;
+            margin: 20px 0;
+        }
+
+        .footer-column h3 {
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: gold;
+        }
+
+        .footer-column .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 23px;
+        }
+
+        .footer-column .social-icons a {
+            
+            width: 40px;
+            height: 40px;
+          
+            border-radius: 50%;
+            color: #000;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+
+        .footer-column .social-icons a:hover {
+            color:#000; 
+       }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border-top: 1px solid gold;
+            color: #000;
+            font-size: 14px;
+        }
+
+        .footer-bottom a {
+            color:gold;
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+/* Additional styling for Course_panel */
+.Course_panel {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.Course_panel h5 {
+    color: #333333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.Course_panel .list_course li {
+    list-style-type: none; /* Remove default list bullet */
+    margin-bottom: 10px; /* Add some spacing between list items */
+}
+
+.Course_panel .list_course li p {
+    font-size: 16px;
+    margin: 0;
+    width: 50%;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    color: #555555;
+}
+
+.Course_panel .list_course li span {
+    color: #1179ef;
+    margin-left: auto;
+}
+
+.Course_panel .list_course li .fa-play-circle {
+    margin-right: 10px;
+    color: #ff6b6b; /* Adjust color as needed */
+}
+
+.Course_panel .list_course li .Click-here {
+    color: #1179ef;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.Course_panel .list_course li .Click-here:hover {
+    text-decoration: underline;
+}
+
+.Course_panel .list_course li.active_Preview {
+    background-color: #f9f9f9; /* Background color for active preview */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.Course_panel .list_course li.active_Preview span {
+    font-weight: bold;
+}
+
+.Course_panel .list_course li.active_Preview .fa-play-circle {
+    color: #ff6b6b; /* Adjust color as needed */
+}
+
+</style>
+
+  <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>The NOX NETWORK</h3>
+                <p>The Nox Network is laying the groundwork for learners of all ages, offering a platform where individuals can come together to sharpen their skills and expand their knowledge.</p>
+	                <div class="social-icons">
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/facebook-new.png" alt="Facebook"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/instagram-new.png" alt="Instagram"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/youtube-play.png" alt="YouTube"></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <a href="/">Home</a><br>
+                <a href="/dashboard/">Course</a><br>
+                <a href="/contact/">Contact Us</a><br>
+                <a href="/dashboard/">Enroll Now</a><br>
+                 <a href="/about/">About Us</a><br>
+                <a href="/login/">Login</a>
+            </div>
+            <div class="footer-column">
+                <h3>Policys</h3>
+                <a href="/returnpolicy/">Return Policy</a><br>
+                <a href="/termsandcondition/">Terms And Condition</a><br>
+                <a href="/privacypolicy/">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            All Rights Reserved © 2024 | <a href="#">Nox Network</a>
+        </div>
+    </footer>

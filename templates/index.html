@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nox Network</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-link, .link {
+            color: black;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .link {
+            background-color: lightblue;
+            border: 2px solid black;
+            border-radius: 50px;
+        }
+
+        .nav-link:hover {
+            color: gold;
+        }
+
+        .link:hover {
+            background-color: gold;
+            color: white;
+        }
+
+        .content {
+            padding-top: 70px; /* Space for fixed navbar */
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .sidebar {overflow: scroll;
+            width: 250px;
+            height: 100vh;
+            background-color: #fff;
+            padding: 15px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: -250px; /* Hide sidebar by default */
+            transition: left 0.7s ease;
+            z-index: 1100; /* Ensure sidebar is above other elements */
+        }
+
+        .sidebar.active {
+            left: 0; /* Show sidebar when active */
+        }
+
+        .sidebar h2 {
+            color: #000;
+            text-align: center;
+            margin-top: 70px; /* Adjust for fixed navbar */
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .sidebar ul li a {
+            color: #000;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #ddd;
+            color: gold;
+        }
+
+        .sidebar ul li .dropdown-content {
+            display: none;
+            background-color: #f4f4f4;
+            list-style-type: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .sidebar ul li .dropdown-content a {
+            padding: 10px;
+            color: #000;
+            display: block;
+        }
+
+        .sidebar ul li .dropdown-content a:hover {
+            background-color: #fff;
+color:#FFEB80;
+        }
+
+        .sidebar ul li.active .dropdown-content {
+            display: block;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #333;
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            flex-grow: 1;
+            transition: margin-left 0.3s ease;
+        }
+
+    
+        .toggle-btn {
+            position: absolute;
+            top: 65px;
+            left: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: left 0.3s ease;
+            z-index: 1050; /* Ensure toggle button is above other elements */
+        }
+
+        .navbar .nav-toggle-btn {
+            display: none;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 20px;margin-right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                left: -100%; /* Hide sidebar by default on small screens */
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .content {
+                margin-left: 0;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .navbar .nav-buttons {
+                display: none; /* Hide nav buttons by default */
+            }
+
+            .navbar .nav-buttons.active {
+                display: flex; /* Show nav buttons when active */
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: white;
+                width: 100%;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar .nav-link, .navbar .link {
+                margin: 10px 0;
+                padding: 10px 15px;
+                border-radius: 0;
+            }
+
+            .navbar .nav-toggle-btn {
+                display: block;
+                left: 30px;
+            }
+
+            .nav-toggle-btn {
+                right: 5%;
+            }
+
+            .toggle-btn {
+                top: 70px;
+                left: 10px;
+            }
+ .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 200px;
+            margin: auto;
+            padding: 0 5px;
+        }
+
+        }
+ .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1400px;
+            margin: auto; margin-bottom: 60px; 
+        }
+        .card-container1 {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+        .card-title {
+            font-size: 1.5em;
+            margin: 16px 0;
+        }
+        .card-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin: 16px 0;
+        }
+        .card-buttons button {
+            background-color: gold;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .card-buttons button:hover {
+            background-color: #CC9900;
+        }
+
+
+
+
+
+
+
+
+
+ .footer {
+            background-color: #FFFDD0;
+            color: #000;
+            padding: 40px 0;
+            text-align: left;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1600px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .footer-column {
+            flex:0;
+            min-width: 320px;
+            margin: 20px 0;
+        }
+
+        .footer-column h3 {
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: gold;
+        }
+
+        .footer-column .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 23px;
+        }
+
+        .footer-column .social-icons a {
+            
+            width: 40px;
+            height: 40px;
+          
+            border-radius: 50%;
+            color: #000;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+
+        .footer-column .social-icons a:hover {
+            color:#000; 
+       }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 1px solid gold;
+            color: #000;
+            font-size: 14px;
+        }
+
+        .footer-bottom a {
+            color:gold;
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+
+       
+    /* Popup Styles */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
+    z-index: 1200; /* Ensure popup is above other elements */
+}
+
+.popup.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.popup-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.popup-content h2 {
+    margin-top: 0;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+.banner { 
+    width: 130%;
+    max-height: 550px;
+    object-fit: fill;
+    display: block;
+    margin: 50px; 
+    padding: 0;
+    margin-left: -27%; margin-right: 10%; margin-bottom: 1%;
+}
+/* CSS for Get Started button */
+.getstart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px; /* Adjust the margin as needed */
+}
+
+.getstart-link {            border: 3px solid #030303;
+
+    display: inline-block;
+    background-color: rgb(37, 188, 226); /* Background color of the button */
+    color: white; /* Text color */
+    padding: 15px 20px; /* Padding around the text */
+    font-size: 20px; /* Font size */
+    font-weight: bold; /* Font weight */
+    text-transform: uppercase; /* Uppercase text */
+    text-decoration: none; /* Remove underline */
+    border-radius: 50px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.getstart-link:hover {
+    background-color: #e8b419; /* Darker shade for hover effect */
+    color: white; /* Maintain white text on hover */
+}
+@media (max-width: 768px) {
+            .getstart-link {
+                padding: 8px 12px; /* Smaller padding */
+                font-size: 12px; /* Smaller font size */
+                border-radius: 25px; /* Smaller border radius */
+            }
+        }
+        .container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.card1 {            border: 4px solid #000000;
+
+  background-color: #c1eaf5;
+  border-radius: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  width: calc(25% - 80px);
+  box-sizing: border-box;
+}
+.card1:hover {
+    background-color: #f7d675; /* Darker shade for hover effect */
+    color: white; /* Maintain white text on hover */
+}
+.card1 h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card1 p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.card1 img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.image-container1 {
+  width: 400px;
+  height: 400px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.title1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.description1 {
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .card1 {
+    width: 100%;
+  }
+
+  .image-container1 {
+    width: 100%;
+    height: auto;
+  }
+}
+    </style>
+</head>
+<body>
+    {% load static %}
+    <div class="navbar">
+        <img src="{% static '1.png' %}" alt="Logo" class="logo">
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
+        <div class="nav-buttons">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/dashboard/" class="nav-link">Courses</a>
+            <a href="/about/" class="nav-link">About</a>
+            <a href="/contact/" class="nav-link">Contact</a>
+           <a href="/login/" class="link">Login</a>
+            <a href="/signup/" class="link">SignUp</a>
+        </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">×</button>
+        <h2>My Courses</h2>
+        <ul>
+           
+            <li class="dropdown">
+                <a href="#services" onclick="toggleDropdown(event)">Profile</a>
+                <ul class="dropdown-content">
+                    <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}"onclick="showPopup()">Change Profile image</a></li>
+                    <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}" onclick="showPopup()">Change password</a></li>
+                    <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}" onclick="showPopup()">Personal information</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="onclick="showPopup()" onclick="toggleDropdown(event)">Clients</a>
+                <ul class="dropdown-content">
+                    <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}"onclick="showPopup()">Dashboard</a></li>
+                    <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}"onclick="showPopup()">Affiliate/Commission</a></li>
+                    <li><a  class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}"onclick="showPopup()">Kyc</a></li> <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}"onclick="showPopup()">NN Community</a></li> <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}" onclick="showPopup()">Affiliate Policy</a></li>
+                </ul>
+            </li>
+            <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}" onclick="showPopup()">Offers</a></li> <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}" onclick="showPopup()">Documents</a></li>
+        </ul>
+    </div>
+   
+   
+    <div class="popup">
+        <div class="popup-content">
+            <button class="popup-close">&times;</button>
+            <h2>NOX NETWORK</h2>
+            <img src="{% static 'NoxNetwork.gif' %}" alt="Popup Image" id="popup-img">
+            
+        </div>
+    </div>
+    
+
+<div class="card-container1">
+    <div class="content">
+        <img src="{% static '5.gif' %}" alt="Banner Image" class="banner">
+    </div>
+</div>
+
+
+<div class="getstart">
+    <a href="/login/" class="getstart-link">Get Started</a>
+    </div>
+    
+    <hr>
+    <div class="title1">Why Choose Nox Network for Remote Learning?</div>
+<div class="description1">‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎Embrace change to advance your career with Nox Network, an innovative ed-tech platform that always has your back. With unique ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎training programs and guidance from industry experts, Nox Network is dedicated to making your professional journey exceptional.</div>
+
+<div class="container1">
+  <div class="card1">
+    <h2>Lucrative Skills:</h2>
+    <p>Our courses teach you skills that lead to high-paying jobs.‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</p>
+  </div>
+  <div class="card1">
+    <h2>Premium Courses:</h2>
+    <p>We focus on delivering true value to our Nox Network community. Our courses are crafted with care to be the best in their field.‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</p>
+  </div>
+  <div class="card1">
+    <h2>Cost-Effective Learning:</h2>
+    <p>We believe education should be accessible to everyone, which is why we offer high-quality courses at the most competitive prices.‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</p>
+  </div>
+  <div class="card1">
+    <h2>Round-the-Clock Support:</h2>
+    <p>Our top-tier support system is available 24/7 for the Nox Network community. Whenever you need assistance, we're just a message away.‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</p>
+  </div>
+</div>
+
+
+    
+    <div class="card-container">
+    <div class="card">
+        <img src="https://via.placeholder.com/300x200" alt="Image 1">
+        <div class="card-title">Card Title 1</div>
+        <div class="card-buttons">
+            <button>Button 1</button>
+            <button>Button 2</button>
+        </div>
+    </div> <div class="card">
+        <img src="https://via.placeholder.com/300x200" alt="Image 1">
+        <div class="card-title">Card Title 1</div>
+        <div class="card-buttons">
+            <button>Button 1</button>
+            <button>Button 2</button>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://via.placeholder.com/300x200" alt="Image 2">
+        <div class="card-title">Card Title 2</div>
+        <div class="card-buttons">
+            <button>Button 1</button>
+            <button>Button 2</button>
+        </div>
+    </div>   <div class="card">
+        <img src="https://via.placeholder.com/300x200" alt="Image 2">
+        <div class="card-title">Card Title 2</div>
+        <div class="card-buttons">
+            <button>Button 1</button>
+            <button>Button 2</button>
+        </div>
+    </div>   
+</div>    </div>
+
+
+
+  <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>The NOX NETWORK</h3>
+                <p>The Nox Network is laying the groundwork for learners of all ages, offering a platform where individuals can come together to sharpen their skills and expand their knowledge.</p>
+	                <div class="social-icons">
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/facebook-new.png" alt="Facebook"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/instagram-new.png" alt="Instagram"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/youtube-play.png" alt="YouTube"></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <a href="/">Home</a><br>
+                <a href="/dashboard/">Course</a><br>
+                <a href="/contact/">Contact Us</a><br>
+                <a href="/dashboard/">Enroll Now</a><br>
+                 <a href="/about/">About Us</a><br>
+                <a href="/login/">Login</a>
+            </div>
+            <div class="footer-column">
+                <h3>Policys</h3>
+                <a href="/returnpolicy/">Return Policy</a><br>
+                <a href="/termsandcondition/">Terms And Condition</a><br>
+                <a href="/privacypolicy/">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            All Rights Reserved © 2024 | <a href="/">Nox Network</a>
+        </div>
+    </footer>
+
+
+    <script>
+   document.addEventListener('DOMContentLoaded', function () {
+    var popup = document.querySelector('.popup');
+    var popupImg = document.querySelector('#popup-img');
+    var popupTitle = document.querySelector('.popup-content h2');
+    var popupClose = document.querySelector('.popup-close');
+
+    document.querySelectorAll('.popup-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var imgSrc = this.getAttribute('data-img-src');
+            var title = this.getAttribute('data-title');
+            popupImg.src = imgSrc;
+            popupTitle.textContent = title;
+            popup.classList.add('active');
+        });
+    });
+
+    popupClose.addEventListener('click', function () {
+        popup.classList.remove('active');
+    });
+
+    window.addEventListener('click', function (e) {
+        if (e.target === popup) {
+            popup.classList.remove('active');
+        }
+    });
+});
+
+    </script>
+
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var content = document.getElementById('content');
+            var navButtons = document.querySelector('.nav-buttons');
+            var navToggleBtn = document.querySelector('.nav-toggle-btn');
+            var sidebarToggleBtn = document.querySelector('.toggle-btn');
+            
+            sidebar.classList.toggle('active');
+            content.classList.toggle('shifted');
+            
+            if (sidebar.classList.contains('active')) {
+                navButtons.classList.remove('active');
+                navToggleBtn.style.display = 'none';
+            } else {
+                navToggleBtn.style.display = 'block';
+            }
+        }
+
+        function toggleNavButtons() {
+            var navButtons = document.querySelector('.nav-buttons');
+            var sidebar = document.getElementById('sidebar');
+            var sidebarToggleBtn = document.querySelector('.toggle-btn');
+            
+            navButtons.classList.toggle('active');
+            
+            if (navButtons.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                sidebarToggleBtn.style.display = 'none';
+            } else {
+                sidebarToggleBtn.style.display = 'block';
+            }
+        }
+
+        function toggleDropdown(event) {
+            event.preventDefault();
+            var parentLi = event.target.parentElement;
+            parentLi.classList.toggle('active');
+        }
+    </script> 
+</body>
+</html>
