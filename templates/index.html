@@ -25,6 +25,7 @@
             z-index: 1000;
         }
 
+
         .logo {
             height: 40px;
         }
@@ -45,7 +46,7 @@
 
         .link {
             background-color: lightblue;
-            border: 2px solid black;
+            border: 1px solid black;
             border-radius: 50px;
         }
 
@@ -128,7 +129,7 @@
 
         .sidebar ul li .dropdown-content a:hover {
             background-color: #fff;
-color:#FFEB80;
+            color:#FFEB80;
         }
 
         .sidebar ul li.active .dropdown-content {
@@ -246,7 +247,9 @@ color:#FFEB80;
             flex-wrap: wrap;
             gap: 20px;
             max-width: 1400px;
-            margin: auto; margin-bottom: 60px; 
+            margin: auto; 
+            margin-top: 80px;
+            margin-bottom: 60px; 
         }
         .card-container1 {
             display: flex;
@@ -257,7 +260,7 @@ color:#FFEB80;
             margin: auto;
         }
         .card {
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 300px;
@@ -290,15 +293,6 @@ color:#FFEB80;
         .card-buttons button:hover {
             background-color: #CC9900;
         }
-
-
-
-
-
-
-
-
-
  .footer {
             background-color: #FFFDD0;
             color: #000;
@@ -364,7 +358,7 @@ color:#FFEB80;
             text-align: center;
             margin-top: 10px;
             padding: 10px;
-            border-top: 1px solid gold;
+            border-top: 2px solid gold;
             color: #000;
             font-size: 14px;
         }
@@ -449,8 +443,8 @@ color:#FFEB80;
     margin-bottom: 60px; /* Adjust the margin as needed */
 }
 
-.getstart-link {            border: 3px solid #030303;
-
+.getstart-link {   
+    border: 2px solid #030303;
     display: inline-block;
     background-color: rgb(37, 188, 226); /* Background color of the button */
     color: white; /* Text color */
@@ -482,24 +476,27 @@ color:#FFEB80;
   padding: 20px;
 }
 
-.card1 {            border: 4px solid #000000;
-
+.card1 { 
+  border: 2px solid #000000;
   background-color: #c1eaf5;
   border-radius: 30px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 15px;
   margin: 10px;
   text-align: center;
   width: calc(25% - 80px);
   box-sizing: border-box;
+  min-height: 300px;
+  cursor: pointer;
 }
 .card1:hover {
-    background-color: #f7d675; /* Darker shade for hover effect */
-    color: white; /* Maintain white text on hover */
+    background-color: #f7d675; 
+    color: white; 
+    transition: 0.4s;
 }
 .card1 h2 {
   font-size: 20px;
   margin-bottom: 10px;
+
 }
 
 .card1 p {
@@ -542,6 +539,8 @@ color:#FFEB80;
   text-align: center;
   margin-bottom: 30px;
   padding: 0 20px;
+  width: 70%;
+  margin: auto;
 }
 
 @media (max-width: 768px) {
@@ -554,12 +553,35 @@ color:#FFEB80;
     height: auto;
   }
 }
+button a.course-link {
+    all: unset; 
+    display: block; 
+    text-align: center; 
+    width: 100%;
+    height: 100%; 
+}
+
+button a.course-link:hover {
+    background-color: inherit; 
+    color: inherit; 
+}
+        .navbar h1 {
+            font-size: 1.5rem; 
+            margin: 0; 
+            padding: 0; 
+            cursor: pointer;
+        }
+        .sub-logo {
+            color: gold;
+        }
+
+
     </style>
 </head>
 <body>
     {% load static %}
     <div class="navbar">
-        <img src="{% static '1.png' %}" alt="Logo" class="logo">
+        <h1> <span class="sub-logo">Nox</span>Network</h1>
         <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
         <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
         <div class="nav-buttons">
@@ -619,61 +641,52 @@ color:#FFEB80;
     </div>
     
     <hr>
-    <div class="title1">Why Choose Nox Network for Remote Learning?</div>
-<div class="description1">‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎Embrace change to advance your career with Nox Network, an innovative ed-tech platform that always has your back. With unique ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎training programs and guidance from industry experts, Nox Network is dedicated to making your professional journey exceptional.</div>
-
-<div class="container1">
-  <div class="card1">
-    <h2>Lucrative Skills:</h2>
-    <p>Our courses teach you skills that lead to high-paying jobs.‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</p>
-  </div>
-  <div class="card1">
-    <h2>Premium Courses:</h2>
-    <p>We focus on delivering true value to our Nox Network community. Our courses are crafted with care to be the best in their field.‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</p>
-  </div>
-  <div class="card1">
-    <h2>Cost-Effective Learning:</h2>
-    <p>We believe education should be accessible to everyone, which is why we offer high-quality courses at the most competitive prices.‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</p>
-  </div>
-  <div class="card1">
-    <h2>Round-the-Clock Support:</h2>
-    <p>Our top-tier support system is available 24/7 for the Nox Network community. Whenever you need assistance, we're just a message away.‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</p>
-  </div>
-</div>
-
-
+    <div class="title1">Why Choose Nox Network for Remote Learning ?</div>
+    <div class="description1">Embrace change to advance your career with Nox Network, an innovative ed-tech platform that always has your back. With unique training programs and guidance from industry experts, Nox Network is dedicated to making your professional journey exceptional.</div>
     
+    <div class="container1">
+      <div class="card1">
+        <h2>Lucrative Skills:</h2>
+        <p>Our courses teach you skills that lead to high-paying jobs.</p>
+      </div>
+      <div class="card1">
+        <h2>Premium Courses:</h2>
+        <p>We focus on delivering true value to our Nox Network community. Our courses are crafted with care to be the best in their field.</p>
+      </div>
+      <div class="card1">
+        <h2>Cost-Effective Learning:</h2>
+        <p>We believe education should be accessible to everyone, which is why we offer high-quality courses at the most competitive prices.</p>
+      </div>
+      <div class="card1">
+        <h2>Round-the-Clock Support:</h2>
+        <p>Our top-tier support system is available 24/7 for the Nox Network community. Whenever you need assistance, we're just a message away.</p>
+      </div>
+    </div>
+    
+
+
     <div class="card-container">
     <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Image 1">
         <div class="card-title">Card Title 1</div>
         <div class="card-buttons">
-            <button>Button 1</button>
-            <button>Button 2</button>
+            <button><a href="/course/1" class="course-link">Go to Course ↗</a></button>
+
         </div>
     </div> <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Image 1">
         <div class="card-title">Card Title 1</div>
         <div class="card-buttons">
-            <button>Button 1</button>
-            <button>Button 2</button>
+            <button><a href="/course/2" class="course-link">Go to Course ↗</a></button>
         </div>
     </div>
     <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Image 2">
         <div class="card-title">Card Title 2</div>
         <div class="card-buttons">
-            <button>Button 1</button>
-            <button>Button 2</button>
+            <button><a href="/course/3" class="course-link">Go to Course ↗</a></button>
         </div>
-    </div>   <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image 2">
-        <div class="card-title">Card Title 2</div>
-        <div class="card-buttons">
-            <button>Button 1</button>
-            <button>Button 2</button>
-        </div>
-    </div>   
+    </div>  
 </div>    </div>
 
 

@@ -4,6 +4,7 @@
 
 
 <base href="https://joshguru.in/">
+<title>NoxNetwork</title>
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/boxicons.min.css">
 <link rel="stylesheet" href="assets/css/flaticon.css">
@@ -249,11 +250,19 @@ p
 .fa.fa-play-circle {
     margin-right: 5px;
 }
-
+.navbar h1 {
+            font-size: 1.5rem; 
+            margin: 0; 
+            padding: 0; 
+            cursor: pointer;
+        }
+        .sub-logo {
+            color: gold;
+        }
 </style>
 
 <div class="navbar">
-        <img src="{% static '1.png' %}" alt="Logo" class="logo">
+    <h1> <span class="sub-logo">Nox</span>Network</h1>
         <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
         <div class="nav-buttons">
             <a href="/" class="nav-link">Home</a>

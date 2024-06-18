@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Navbar with Logo</title>
+    <title>NoxNetwork</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -257,15 +257,21 @@
       font-size: 16px;
       transition: background-color 0.3s;
       margin: 0 auto;    } 
-
-
-
+      .navbar h1 {
+            font-size: 1.5rem; 
+            margin: 0; 
+            padding: 0; 
+            cursor: pointer;
+        }
+        .sub-logo {
+            color: gold;
+        }
 
     </style>
 </head>
 <body>
     <div class="navbar">
-        <img src="1.png" alt="Logo" class="logo">
+        <h1> <span class="sub-logo">Nox</span>Network</h1>
         <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
         <div class="nav-buttons">
             <a href="/" class="nav-link">Home</a>

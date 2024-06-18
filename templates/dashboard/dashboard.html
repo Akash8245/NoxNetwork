@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Navbar with Logo</title>
+    <title>NoxNetwork</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,9 +59,12 @@
         }
 
         .content {
-            padding-top: 70px; /* Space for fixed navbar */
+            padding-top: 70px; 
             padding-left: 20px;
             padding-right: 20px;
+            max-width: 1200px; 
+            margin: auto; 
+            transition: margin-left 0.3s ease;
         }
 
         .sidebar {overflow: scroll;
@@ -246,7 +249,7 @@ color:#FFEB80;
             flex-wrap: wrap;
             gap: 20px;
             max-width: 1400px;
-            margin: auto;
+            /* margin: auto; */
         }
         .card {
             border: 1px solid #ccc;
@@ -282,15 +285,6 @@ color:#FFEB80;
         .card-buttons button:hover {
             background-color: #CC9900;
         }
-
-
-
-
-
-
-
-
-
  .footer {
             background-color: #FFFDD0;
             color: #000;
@@ -415,11 +409,32 @@ color:#FFEB80;
 .dropdown-menu.show {
     display: block;
 }
+button a.course-link {
+    all: unset; 
+    display: block; 
+    text-align: center; 
+    width: 100%;
+    height: 100%; 
+}
+
+button a.course-link:hover {
+    background-color: inherit; 
+    color: inherit; 
+}
+.navbar h1 {
+            font-size: 1.5rem; 
+            margin: 0; 
+            padding: 0; 
+            cursor: pointer;
+        }
+        .sub-logo {
+            color: gold;
+        }
     </style>
 </head>
 <body> {% load static %}
     <div class="navbar">
-        <img src="{% static '1.png' %}" alt="Logo" class="logo">
+        <h1> <span class="sub-logo">Nox</span>Network</h1>
         <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
         <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
         <div class="nav-buttons">
@@ -473,30 +488,29 @@ color:#FFEB80;
        
 
 <h1>‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </h1><div class="dash">
-  <h1>User Dashboard</h1>
-      <p class="welcome-message"><b>Welcome, {{ user.name }} !</b></p> </div>
+      <div>
+        <p >Welcome, {{ user.name }} !</p> </div>
+        <p >Your invide code {{ user.referral_code }} </p>
+      </div>
 <div class="card-container">
     <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Image 1">
         <div class="card-title">Card Title 1</div>
         <div class="card-buttons">
-            <button>Button 1</button>
-            <button>Button 2</button>
+            <button><a href="/course/1" class="course-link">Go to Course ↗</a></button>
         </div>
     </div> <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Image 1">
         <div class="card-title">Card Title 1</div>
         <div class="card-buttons">
-            <button>Button 1</button>
-            <button>Button 2</button>
+            <button><a href="/course/2" class="course-link">Go to Course ↗</a></button>
         </div>
     </div>
     <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Image 2">
         <div class="card-title">Card Title 2</div>
         <div class="card-buttons">
-            <button>Button 1</button>
-            <button>Button 2</button>
+            <button><a href="/course/3" class="course-link">Go to Course ↗</a></button>
         </div>
     </div>        
     
@@ -536,19 +550,6 @@ color:#FFEB80;
             All Rights Reserved © 2024 | <a href="#">Nox Network</a>
         </div>
     </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script>
         function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');

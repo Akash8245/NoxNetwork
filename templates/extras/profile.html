@@ -380,11 +380,20 @@ border:1px solid #000;        }
                 display: block;
             }
         }
+        .navbar h1 {
+            font-size: 1.5rem; 
+            margin: 0; 
+            padding: 0; 
+            cursor: pointer;
+        }
+        .sub-logo {
+            color: gold;
+        }
     </style>
 </head>
 <body>{% load static %}
     <div class="navbar">
-        <img src="{% static '1.png' %}" alt="Logo" class="logo">
+        <h1> <span class="sub-logo">Nox</span>Network</h1>
         <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
         <div class="nav-buttons">
             <a href="/" class="nav-link">Home</a>
