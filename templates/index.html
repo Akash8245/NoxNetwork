@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nox Network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
+        *{
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -24,7 +32,9 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             z-index: 1000;
         }
-
+        .navbar h1{
+            font-weight:600 ;
+        }
 
         .logo {
             height: 40px;
@@ -221,6 +231,7 @@
             .navbar .nav-toggle-btn {
                 display: block;
                 left: 30px;
+                margin-right: 40px;
             }
 
             .nav-toggle-btn {
@@ -446,29 +457,29 @@
 .getstart-link {   
     border: 2px solid #030303;
     display: inline-block;
-    background-color: rgb(37, 188, 226); /* Background color of the button */
-    color: white; /* Text color */
-    padding: 15px 20px; /* Padding around the text */
-    font-size: 20px; /* Font size */
-    font-weight: bold; /* Font weight */
-    text-transform: uppercase; /* Uppercase text */
-    text-decoration: none; /* Remove underline */
-    border-radius: 50px; /* Rounded corners */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    background-color: rgb(37, 188, 226); 
+    color: white; 
+    padding: 15px 20px; 
+    font-size: 20px;
+    font-weight: bold; 
+    text-transform: uppercase;
+    text-decoration: none; 
+    border-radius: 50px; 
+    transition: background-color 0.3s, color 0.3s; 
 }
 
 .getstart-link:hover {
-    background-color: #e8b419; /* Darker shade for hover effect */
-    color: white; /* Maintain white text on hover */
+    background-color: #e8b419; 
+    color: white; 
 }
 @media (max-width: 768px) {
             .getstart-link {
-                padding: 8px 12px; /* Smaller padding */
-                font-size: 12px; /* Smaller font size */
-                border-radius: 25px; /* Smaller border radius */
+                padding: 8px 12px; 
+                font-size: 12px; 
+                border-radius: 25px; 
             }
         }
-        .container1 {
+.container1 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -477,8 +488,9 @@
 }
 
 .card1 { 
+    /* color: white; */
   border: 2px solid #000000;
-  background-color: #c1eaf5;
+  /* background-color: #e8b419; */
   border-radius: 30px;
   padding: 15px;
   margin: 10px;
@@ -488,11 +500,11 @@
   min-height: 300px;
   cursor: pointer;
 }
-.card1:hover {
+/* .card1:hover {
     background-color: #f7d675; 
     color: white; 
     transition: 0.4s;
-}
+} */
 .card1 h2 {
   font-size: 20px;
   margin-bottom: 10px;
@@ -527,10 +539,11 @@
 }
 
 .title1 {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: bold;
   text-align: center;
   margin: 20px 0;
+
 }
 
 .description1 {
@@ -539,7 +552,7 @@
   text-align: center;
   margin-bottom: 30px;
   padding: 0 20px;
-  width: 70%;
+  width: 85%;
   margin: auto;
 }
 
@@ -573,7 +586,77 @@ button a.course-link:hover {
         }
         .sub-logo {
             color: gold;
+            font-weight: 600;
         }
+
+    .hero {
+    background-color: #f0f0f0;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; 
+}
+
+.hero img {
+    width: 350px;
+    height: 350px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.hero h1 {
+    font-size: 45px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column; 
+    }
+    .hero h1{
+        font-size: 18px;
+        font-weight: 600;
+    }
+  .hero p{
+    font-size: 16px;
+  }
+    .hero img {
+        margin-left: 0px;
+        margin-top: 45px;
+        /* margin-bottom: 20px;  */
+        height: 300px;
+        width: 300px;
+    }
+}
+.get-started {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none; 
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 10px;
+    margin-top: 13px;
+}
+
+
+.get-started:hover {
+    background: #f7d675 ;
+    transition: 0.5s;
+
+}
+
+.get-started a {
+    color: inherit;
+    text-decoration: none;
+}
 
 
     </style>
@@ -582,7 +665,6 @@ button a.course-link:hover {
     {% load static %}
     <div class="navbar">
         <h1> <span class="sub-logo">Nox</span>Network</h1>
-        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
         <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
         <div class="nav-buttons">
             <a href="/" class="nav-link">Home</a>
@@ -593,53 +675,21 @@ button a.course-link:hover {
             <a href="/signup/" class="link">SignUp</a>
         </div>
     </div>
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">×</button>
-        <h2>My Courses</h2>
-        <ul>
-           
-            <li class="dropdown">
-                <a href="#services" onclick="toggleDropdown(event)">Profile</a>
-                <ul class="dropdown-content">
-                    <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}"onclick="showPopup()">Change Profile image</a></li>
-                    <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}" onclick="showPopup()">Change password</a></li>
-                    <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}" onclick="showPopup()">Personal information</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="onclick="showPopup()" onclick="toggleDropdown(event)">Clients</a>
-                <ul class="dropdown-content">
-                    <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}"onclick="showPopup()">Dashboard</a></li>
-                    <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}"onclick="showPopup()">Affiliate/Commission</a></li>
-                    <li><a  class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}"onclick="showPopup()">Kyc</a></li> <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}"onclick="showPopup()">NN Community</a></li> <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}" onclick="showPopup()">Affiliate Policy</a></li>
-                </ul>
-            </li>
-            <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}" onclick="showPopup()">Offers</a></li> <li><a class="popup-btn" data-title="NOX NETWORK" data-img-src="{% static 'NoxNetwork.gif' %}" onclick="showPopup()">Documents</a></li>
-        </ul>
-    </div>
+  
    
-   
-    <div class="popup">
-        <div class="popup-content">
-            <button class="popup-close">&times;</button>
-            <h2>NOX NETWORK</h2>
-            <img src="{% static 'NoxNetwork.gif' %}" alt="Popup Image" id="popup-img">
-            
-        </div>
-    </div>
-    
 
-<div class="card-container1">
+    
+<div class="hero">
+    <img src="{% static 'hero.jpeg' %}" alt="logo">
     <div class="content">
-        <img src="{% static '5.gif' %}" alt="Banner Image" class="banner">
+        <h1>Welcome to NoxNetwork: A Leading E-Learning Platform</h1>
+        <p>Welcome to NoxNetwork: Your Trusted Partner in Transformative E-Learning Experiences, Offering a Diverse Array of Educational Resources and Expertise to Empower Learners Worldwide
+            <br>
+            <button class="get-started"><a href="/login/">Get Started ↗</a></button>
+        </p>
     </div>
 </div>
 
-
-<div class="getstart">
-    <a href="/login/" class="getstart-link">Get Started</a>
-    </div>
-    
     <hr>
     <div class="title1">Why Choose Nox Network for Remote Learning ?</div>
     <div class="description1">Embrace change to advance your career with Nox Network, an innovative ed-tech platform that always has your back. With unique training programs and guidance from industry experts, Nox Network is dedicated to making your professional journey exceptional.</div>
@@ -663,8 +713,6 @@ button a.course-link:hover {
       </div>
     </div>
     
-
-
     <div class="card-container">
     <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Image 1">
@@ -687,9 +735,8 @@ button a.course-link:hover {
             <button><a href="/course/3" class="course-link">Go to Course ↗</a></button>
         </div>
     </div>  
-</div>    </div>
-
-
+ </div>
+</div>
 
   <footer class="footer">
         <div class="footer-container">

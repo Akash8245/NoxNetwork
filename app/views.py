@@ -212,7 +212,15 @@ class Dashboard(APIView):
             access_token = AccessToken(token)
             user_id = access_token['user_id']
             user = User.objects.get(pk=user_id)
-            return render(request, 'dashboard/dashboard.html', {"user": user})
+            
+            referred_by_user = None
+            if user.referred_by:
+                referred_by_user = user.referred_by
+            
+            return render(request, 'dashboard/dashboard.html', {
+                "user": user,
+                "referred_by_user": referred_by_user
+            })
         except (TokenError, User.DoesNotExist):
             response = redirect('/login/')
             response.delete_cookie('access')
