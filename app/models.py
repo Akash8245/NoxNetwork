@@ -17,15 +17,18 @@ class User(models.Model):
     city = models.CharField(max_length=150)
     referred_by = models.CharField(max_length=100, blank=True)
     referral_code = models.CharField(max_length=8, unique=True, editable=False, blank=True)
+    no_people_refered = models.IntegerField(default=0)  
     course1_purchased = models.BooleanField(default=False)
     course2_purchased = models.BooleanField(default=False)
     course3_purchased = models.BooleanField(default=False)
-
     is_verified = models.BooleanField(default=False)
     verification_token = models.CharField(max_length=64, blank=True)
     token_created_at = models.DateTimeField(null=True, blank=True)
     last_login = models.DateTimeField(null=True, blank=True)
     reset_password_token = models.CharField(max_length=100, blank=True, null=True)
+
+    settlement_amt = models.IntegerField(default=0)
+    overall_earnings = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.name}"
@@ -42,5 +45,15 @@ class Course(models.Model):
 def pre_save_user(sender, instance, **kwargs):
     if not instance.referral_code:
         instance.referral_code = generate_referral_code()
+
     if not instance.pk and instance.password:
         instance.password = make_password(instance.password)
+
+    if instance.pk is None:
+        if instance.referred_by:
+            try:
+                referring_user = User.objects.get(referral_code=instance.referred_by)
+                referring_user.no_people_refered += 1
+                referring_user.save()
+            except User.DoesNotExist:
+                pass 

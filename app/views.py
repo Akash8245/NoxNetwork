@@ -33,14 +33,17 @@ class Home(APIView):
 # Signup
 class Signup(APIView):
     def get(self, request):
-        return render(request, 'signup/signup.html')
+        referred_by = request.GET.get('referred_by', '')
+        return render(request, 'signup/signup.html', {'referred_by': referred_by})
 
     def post(self, request):
+        referred_by = request.data.get('referred_by', '')
         serializer = UserSerializers(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             user.verification_token = str(uuid.uuid4())
             user.token_created_at = timezone.now()
+            user.referred_by = referred_by
             user.save()
             verification_link = request.build_absolute_uri(
                 f"/verify-email/?token={user.verification_token}"
@@ -55,6 +58,9 @@ class Signup(APIView):
             return render(request, 'signup/signup_success.html')
         else:
             return Response({"errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+        
+
 
 # Verification 
 class VerifyEmail(APIView):
@@ -215,7 +221,10 @@ class Dashboard(APIView):
             
             referred_by_user = None
             if user.referred_by:
-                referred_by_user = user.referred_by
+                try:
+                    referred_by_user = User.objects.get(referral_code=user.referred_by).name
+                except User.DoesNotExist:
+                    referred_by_user = "Unknown"
             
             return render(request, 'dashboard/dashboard.html', {
                 "user": user,
@@ -225,7 +234,7 @@ class Dashboard(APIView):
             response = redirect('/login/')
             response.delete_cookie('access')
             return response
-
+        
 # Course View
 class CourseView(APIView):
     def get(self, request, course_id):

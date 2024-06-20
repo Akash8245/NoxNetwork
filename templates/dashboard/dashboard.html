@@ -223,6 +223,7 @@ color:#FFEB80;
             .navbar .nav-toggle-btn {
                 display: block;
                 left: 30px;
+                margin-right: 30px;
             }
 
             .nav-toggle-btn {
@@ -365,12 +366,6 @@ color:#FFEB80;
         }
 
 
-
-
-.dash{
-            text-align: center;font-size: 18px;
-}
-
 .navbar-profile {
     position: relative;
     display: flex; margin-left: 100px;
@@ -430,69 +425,109 @@ button a.course-link:hover {
         .sub-logo {
             color: gold;
         }
+        .logout{
+            background: rgb(63, 63, 63);
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+            margin-left: 5px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 10px;
+            width: 70px;
+        }
+        .dash{
+
+            margin-top: 10px;
+            font-size: 18px;
+            }
+
+            .copy-btn {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+        .copy-btn.copied {
+            background-color: #ddd;
+            color: grey; 
+        }
+        #inviteLink{
+            width: 200px;
+            outline: none;
+            padding: 5px;
+            font-weight: 400;
+            vertical-align: top;
+        }
+        .earning-card{
+            min-height: 80px;
+            width: 180px;
+            border: 2px solid black;
+            margin: 5px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .earnings-container{
+            display: flex;
+        }
     </style>
 </head>
 <body> {% load static %}
     <div class="navbar">
         <h1> <span class="sub-logo">Nox</span>Network</h1>
-        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
         <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
         <div class="nav-buttons">
             <a href="/" class="nav-link">Home</a>
             <a href="/dashboard/" class="nav-link">Courses</a>
             <a href="/about/" class="nav-link">About</a>
             <a href="/contact/" class="nav-link">Contact</a>
-            <a href="" class="nav-link"></a>            <a href="" class="nav-link"></a>
-            <a href="" class="nav-link"></a>
-            <a href="" class="nav-link"></a>
-            <a href="" class="nav-link"></a>
-            
-            
-            
-
-            <div class="navbar-profile" id="navbarProfile"> <b>Hi </b> ‎ {{ user.name }}
-                <img src="{% static '7.png' %}" alt="Profile Icon" class="profile-icon" id="profileIcon">
-                <div class="dropdown-menu" id="dropdownMenu">
-                    <a href="#">Profile</a>
-                    <a href="#">Settings</a>
-                    <a href="/logout/">Logout</a>
-                </div>
-            </div>
+            <a href="/logout/" class="logout" >Logout →</a>
+             
         </div>
     </div>
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">×</button>
-        <h2>My Courses</h2>
-        <ul>
-           
-            <li class="dropdown">
-                <a href="#services" onclick="toggleDropdown(event)">Profile</a>
-                <ul class="dropdown-content">
-                    <li><a href="/extras/">Change Profile image</a></li>
-                    <li><a href="#seo">Change password</a></li>
-                    <li><a href="#marketing">Personal information</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#clients" onclick="toggleDropdown(event)">Clients</a>
-                <ul class="dropdown-content">
-                    <li><a href="#client1">Dashboard</a></li>
-                    <li><a href="#client2">Affiliate/Commission</a></li>
-                    <li><a href="#client3">Kyc</a></li> <li><a href="#client3">NN Community</a></li> <li><a href="#client3">Affiliate Policy</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Documents</a></li> <li><a href="/logout/">Logout</a></li>
-        </ul>
-    </div>
-    <div class="content" id="content">
-       
 
-<h1>‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </h1><div class="dash">
+<div class="content" id="content">       
+
+<h1>‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </h1>
+<div class="dash">
       <div>
-        <p >Welcome, {{ user.name }} !</p> </div>
-        <p >Your invide code {{ user.referral_code }} </p>
-        <p>Referred by: {{ referred_by_user.name }}</p>
+        <h1>Dashboard →</h1>
+        <p> <b>Hello, {{ user.name }} !</b></p> </div>
+          <p><b>Your invite link:</b><br>
+        <input type="text" id="inviteLink" value="http://127.0.0.1:8000/signup/?referred_by={{ user.referral_code }}" readonly>
+        <br>
+        <button class="copy-btn" onclick="copyToClipboard()">Copy Invite link</button>
+    </p>
+    
+        {% if referred_by_user %}
+        <p>You were referred by: {{ referred_by_user }}</p>
+        {% endif %}
+        <p><b>People you have refered :-</b> {{ user.no_people_refered }}</p>
       </div>
+
+      <div class="earnings-container">
+        <section  class="earning-card">
+            <b>Settlement amount </b>
+            <p> <b>{{ user.settlement_amt }}</b> </p>
+        </section>
+
+        <section class="earning-card">
+           <b> Overall Earnings </b>
+           <p> <b>{{ user.overall_earnings }}</b> </p>
+        </section>
+      </div>
+
+      <br>
+      <h1>Courses →</h1>
 <div class="card-container">
     <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Image 1">
@@ -515,7 +550,8 @@ button a.course-link:hover {
         </div>
     </div>        
     
-</div>    </div>
+</div>   
+ </div>
 
 
 
@@ -606,6 +642,30 @@ button a.course-link:hover {
             }
         });
     });
+
+    function copyToClipboard() {
+            var inviteLink = document.getElementById("inviteLink");
+            inviteLink.select();
+            
+            try {
+                var successful = document.execCommand("copy");
+                if (successful) {
+                    var button = document.querySelector(".copy-btn");
+                    button.innerText = "Copied!";
+                    button.classList.add("copied");
+
+                    // Reset button text after 2 seconds
+                    setTimeout(function() {
+                        button.innerText = "Copy Invite link";
+                        button.classList.remove("copied");
+                    }, 2000); // 2000 milliseconds = 2 seconds
+                } else {
+                    alert("Copying failed. Please try again.");
+                }
+            } catch (err) {
+                console.error("Unable to copy:", err);
+            }
+        }
     </script>
 </body>
 </html>
