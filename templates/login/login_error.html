@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
+    <link rel="icon" href="{% static 'fav.svg' %}" type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoxNetwork</title>
     <style>
@@ -53,9 +55,12 @@
             color: gold;
         }
 
-        .link:hover {
-            background-color: gold;
-            color: white;
+        .link {
+            background-color: lightblue;
+            border: 1px solid black;
+            border-radius: 50px;
+            width: 60px;
+            text-align: center;
         }
 
         .content {
@@ -100,12 +105,14 @@
             .navbar .nav-link, .navbar .link {
                 margin: 5px 0;
                 padding: 5px 10px;
-                border-radius: 0;
+                border-radius: 40px;
+                margin-left: 10px;
             }
 
             .navbar .nav-toggle-btn {
                 display: block;
                 left: 30px;
+                margin-right: 50px;
             }
 
             .nav-toggle-btn {

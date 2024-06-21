@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" href="{% static 'fav.svg' %}" type="image/svg+xml">
     <title>NoxNetwork</title>
     <style>
         body {
@@ -503,7 +505,7 @@ button a.course-link:hover {
         <h1>Dashboard →</h1>
         <p> <b>Hello, {{ user.name }} !</b></p> </div>
           <p><b>Your invite link:</b><br>
-        <input type="text" id="inviteLink" value="http://127.0.0.1:8000/signup/?referred_by={{ user.referral_code }}" readonly>
+            <input type="text" id="inviteLink" value="{{ base_url }}/signup/?referred_by={{ user.referral_code }}" readonly>
         <br>
         <button class="copy-btn" onclick="copyToClipboard()">Copy Invite link</button>
     </p>
@@ -528,29 +530,29 @@ button a.course-link:hover {
 
       <br>
       <h1>Courses →</h1>
-<div class="card-container">
-    <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image 1">
-        <div class="card-title">Card Title 1</div>
-        <div class="card-buttons">
-            <button><a href="/course/1" class="course-link">Go to Course ↗</a></button>
-        </div>
-    </div> <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image 1">
-        <div class="card-title">Card Title 1</div>
-        <div class="card-buttons">
-            <button><a href="/course/2" class="course-link">Go to Course ↗</a></button>
-        </div>
-    </div>
-    <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image 2">
-        <div class="card-title">Card Title 2</div>
-        <div class="card-buttons">
-            <button><a href="/course/3" class="course-link">Go to Course ↗</a></button>
-        </div>
-    </div>        
+      <div class="card-container">
+        <div class="card">
+            <img src="{% static 'webdev.jpeg' %}" alt="Image 1">
+            <div class="card-title">Web Development</div>
+            <div class="card-buttons">
+                <button><a href="/course/1" class="course-link">Go to Course ↗</a></button>
     
-</div>   
+            </div>
+        </div> <div class="card">
+            <img src="{% static 'comming.jpeg' %}" alt="Image 1">
+            <div class="card-title">Canva</div>
+            <div class="card-buttons">
+                <button><a href="/course/2" class="course-link">Go to Course ↗</a></button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'comming.jpeg' %}" alt="Image 2">
+            <div class="card-title">Social media</div>
+            <div class="card-buttons">
+                <button><a href="/course/3" class="course-link">Go to Course ↗</a></button>
+            </div>
+        </div>  
+     </div>  
  </div>
 
 

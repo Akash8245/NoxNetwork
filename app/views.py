@@ -12,7 +12,6 @@ from django.core.mail import send_mail
 from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.hashers import make_password
 import secrets
 from django.core.mail import send_mail
 from django.conf import settings
@@ -45,12 +44,11 @@ class Signup(APIView):
             user.token_created_at = timezone.now()
             user.referred_by = referred_by
             user.save()
-            verification_link = request.build_absolute_uri(
-                f"/verify-email/?token={user.verification_token}"
-            )
+            base_url = settings.BASE_URL
+            verification_link = f"{base_url}/verify-email/?token={user.verification_token}"
             send_mail(
                 'Verify your email address',
-                f'Welcome to NoxNetwork Please verify your email by clicking the following link: {verification_link}',
+                f'Welcome to NoxNetwork! Please verify your email by clicking the following link: {verification_link}',
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
                 fail_silently=False,
@@ -137,14 +135,12 @@ class ForgotPasswordRequest(View):
         email = request.POST.get('email')
         try:
             user = User.objects.get(email=email)
-            # Generate a unique token
             token = secrets.token_urlsafe(24)
-            # Save the token in the user's record
             user.reset_password_token = token
             user.save()
 
-            reset_link = request.build_absolute_uri(f"/reset-password/?token={token}&uid={user.id}")
-            # Send an email to the user with the password reset link
+            base_url = settings.BASE_URL
+            reset_link = f"{base_url}/reset-password/?token={token}&uid={user.id}"
             send_mail(
                 'Password Reset Request',
                 f'Please reset your password by clicking the following link: {reset_link}',
@@ -155,6 +151,7 @@ class ForgotPasswordRequest(View):
             return render(request, 'forgot_password/forgot_password_email_sent.html')
         except User.DoesNotExist:
             return render(request, 'forgot_password/forgot_password_request.html', {"error": "Email address not found"})
+
 
 # Reset Password View
 class ResetPassword(APIView):
@@ -226,10 +223,12 @@ class Dashboard(APIView):
                 except User.DoesNotExist:
                     referred_by_user = "Unknown"
             
-            return render(request, 'dashboard/dashboard.html', {
+            context = {
                 "user": user,
-                "referred_by_user": referred_by_user
-            })
+                "referred_by_user": referred_by_user,
+                "base_url": settings.BASE_URL  # Add base_url to the context
+            }
+            return render(request, 'dashboard/dashboard.html', context)
         except (TokenError, User.DoesNotExist):
             response = redirect('/login/')
             response.delete_cookie('access')

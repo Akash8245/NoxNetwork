@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" href="{% static 'fav.svg' %}" type="image/svg+xml">
     <title>NoxNetwork</title>
     <style>
         body {
@@ -106,6 +108,7 @@
             .navbar .nav-toggle-btn {
                 display: block;
                 left: 30px;
+                margin-right: 50px;
             }
 
             .nav-toggle-btn {

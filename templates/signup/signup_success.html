@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
+    <link rel="icon" href="{% static 'fav.svg' %}" type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoxNetwork</title>
     <style>
@@ -45,8 +47,10 @@
 
         .link {
             background-color: lightblue;
-            border: 2px solid black;
+            border: 1px solid black;
             border-radius: 50px;
+            width: 60px;
+            text-align: center;
         }
 
         .nav-link:hover {
@@ -100,12 +104,14 @@
             .navbar .nav-link, .navbar .link {
                 margin: 5px 0;
                 padding: 5px 10px;
-                border-radius: 0;
+                border-radius: 40px;
+                margin-left: 10px;
             }
 
             .navbar .nav-toggle-btn {
                 display: block;
                 left: 30px;
+                margin-right: 50px;
             }
 
             .nav-toggle-btn {
@@ -256,7 +262,8 @@
       cursor: pointer;
       font-size: 16px;
       transition: background-color 0.3s;
-      margin: 0 auto;    } 
+      margin:  auto;  
+      } 
       .navbar h1 {
             font-size: 1.5rem; 
             margin: 0; 
@@ -290,10 +297,6 @@
 <div class="button">
        <a href="/login/" class="link">Login</a>
 </div>
-
-
-
-
 
   <footer class="footer">
         <div class="footer-container">

@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nox Network</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {% load static %}
+    <link rel="icon" href="{% static 'fav.svg' %}" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
         *{
             font-family: "Poppins", sans-serif;
@@ -189,7 +191,8 @@
             padding: 11px 20px;
             cursor: pointer;
             border-radius: 5px;
-            margin-left: 20px;margin-right: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
         }
 
         @media (max-width: 768px) {
@@ -225,8 +228,10 @@
             }
 
             .navbar .nav-link, .navbar .link {
-                margin: 10px 0;
-                padding: 10px 15px;
+                margin: 5px 0;
+                padding: 5px 10px;
+                border-radius: 40px;
+                margin-left: 10px;
             }
 
             .navbar .nav-toggle-btn {
@@ -285,8 +290,9 @@
             height: auto;
         }
         .card-title {
-            font-size: 1.5em;
-            margin: 16px 0;
+            font-size: 20px;
+            font-weight: 500px;
+            /* margin: 16px 0; */
         }
         .card-buttons {
             display: flex;
@@ -691,7 +697,6 @@ button a.course-link:hover {
     <hr>
     <div class="title1">Why Choose Nox Network for Remote Learning ?</div>
     <div class="description1">Embrace change to advance your career with Nox Network, an innovative ed-tech platform that always has your back. With unique training programs and guidance from industry experts, Nox Network is dedicated to making your professional journey exceptional.</div>
-    
     <div class="container1">
       <div class="card1">
         <h2>Lucrative Skills:</h2>
@@ -713,22 +718,22 @@ button a.course-link:hover {
     
     <div class="card-container">
     <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image 1">
-        <div class="card-title">Card Title 1</div>
+        <img src="{% static 'webdev.jpeg' %}" alt="Image 1">
+        <div class="card-title">Web Development</div>
         <div class="card-buttons">
             <button><a href="/course/1" class="course-link">Go to Course ↗</a></button>
 
         </div>
     </div> <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image 1">
-        <div class="card-title">Card Title 1</div>
+        <img src="{% static 'comming.jpeg' %}" alt="Image 1">
+        <div class="card-title">Canva</div>
         <div class="card-buttons">
             <button><a href="/course/2" class="course-link">Go to Course ↗</a></button>
         </div>
     </div>
     <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image 2">
-        <div class="card-title">Card Title 2</div>
+        <img src="{% static 'comming.jpeg' %}" alt="Image 2">
+        <div class="card-title">Social media</div>
         <div class="card-buttons">
             <button><a href="/course/3" class="course-link">Go to Course ↗</a></button>
         </div>
