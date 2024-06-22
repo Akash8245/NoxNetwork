@@ -102,6 +102,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+WSGI_APPLICATION = 'api.wsgi.app'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
