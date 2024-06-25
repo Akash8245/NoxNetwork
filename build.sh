@@ -1,3 +1,1 @@
-yes | python manage.py collectstatic
-
-echo "Static files collected successfully."
+python manage.py collectstatic --noinput

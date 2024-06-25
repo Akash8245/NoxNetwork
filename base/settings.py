@@ -9,10 +9,15 @@ BASE_URL = 'noxnetwork-1.onrender.com'
 
 SECRET_KEY = 'django-insecure-3&zuxpn+nq+xd0xkx=duzwurhsa8=5s60#+*p8xjiy@yyc6az4'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["www.noxnetwork.me","noxnetwork.me"]
 
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "app/static",
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
@@ -70,14 +75,6 @@ DATABASES = {
         'NAME': BASE_DIR / "db.sqlite3",
     }
 }
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / "app/static",
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 AUTH_PASSWORD_VALIDATORS = [
