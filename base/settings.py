@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-3&zuxpn+nq+xd0xkx=duzwurhsa8=5s60#+*p8xjiy@yyc6az4
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1","localhost","noxnetwork.pythonanywhere.com",".versel.app"]
+ALLOWED_HOSTS = ["*"]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -76,8 +76,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "app/static",
 ]
-
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
