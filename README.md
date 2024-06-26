@@ -1,9 +1,9 @@
 # NoxNetwork
-Run:-
-python manage.py makemigrations ,
-python manage.py migrate ,
-python manage.py runserver
+Run:- docker run noxnetwork
 
 ## .env Variables 
+DB_USER ,
+DB_PASSWORD
+
 EMAIL ,
 EMAIL_PASSWORD
