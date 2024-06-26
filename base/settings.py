@@ -13,7 +13,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "app/static",
+]
 
 
 # Application definition
@@ -71,13 +76,6 @@ DATABASES = {
     }
 }
 
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / "app/static",
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 AUTH_PASSWORD_VALIDATORS = [
