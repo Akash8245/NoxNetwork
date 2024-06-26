@@ -1,9 +1,3 @@
 # NoxNetwork
-Run:- docker run noxnetwork
-
-## .env Variables 
-DB_USER ,
-DB_PASSWORD
-
-EMAIL ,
-EMAIL_PASSWORD
+### .env Variables
+EMAIL , EMAIL_PASSWORD
