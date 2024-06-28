@@ -2,6 +2,7 @@ from pathlib import Path
 from datetime import timedelta
 import os 
 from dotenv import load_dotenv
+import dj_database_url
 
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +24,7 @@ STATICFILES_DIRS = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Application definition
+# Application definition 
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -74,13 +75,10 @@ WSGI_APPLICATION = 'base.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3",
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    )
 }
-
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
