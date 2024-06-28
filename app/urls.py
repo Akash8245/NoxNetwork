@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import Home,Signup,Login,Dashboard,CourseView,VerifyEmail,ForgotPasswordRequest,ResetPassword,Logout,About,ContactUs,ReturnPolicy,TermsAndCondition,PrivacyPolicy
+from .views import Home,Signup,Login,Dashboard,CourseView,VerifyEmail,ForgotPasswordRequest,ResetPassword,Logout,About,ContactUs,ReturnPolicy,TermsAndCondition,PrivacyPolicy,Shipping
 
 urlpatterns = [
     path('', Home.as_view()),
@@ -12,6 +12,7 @@ urlpatterns = [
     path('returnpolicy/',ReturnPolicy.as_view()),
     path('termsandcondition/',TermsAndCondition.as_view()),
     path('privacypolicy/',PrivacyPolicy.as_view()),
+    path('shipping/',Shipping.as_view()),
     path('dashboard/',Dashboard.as_view()),
     path('course/<int:course_id>/', CourseView.as_view(), name='course'),
     path('verify-email/', VerifyEmail.as_view(), name='verify_email'),

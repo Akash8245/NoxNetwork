@@ -256,3 +256,8 @@ class CourseView(APIView):
                 return render(request,'courses/course_error.html')
         except TokenError:
             return redirect('/login/')
+
+#Shipping
+class Shipping(APIView):
+    def get(self,request):
+        return render(request,'extras/shipping.html')

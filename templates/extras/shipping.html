@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping & Delivery Policy</title>
+</head>
+<style>
+    *{
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        color: black;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+    .navbar h1{
+        font-weight:600 ;
+    }
+
+    .logo {
+        height: 40px;
+    }
+
+    .nav-buttons {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .nav-link, .link {
+        color: black;
+        text-decoration: none;
+        margin: 0 15px;
+        padding: 5px 10px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .link {
+        background-color: lightblue;
+        border: 1px solid black;
+        border-radius: 50px;
+        width: 60px;
+        text-align: center;
+    }
+
+    .nav-link:hover {
+        color: gold;
+    }
+
+    .link:hover {
+        background-color: gold;
+        color: white;
+    }
+
+    .content {
+        padding-top: 70px; /* Space for fixed navbar */
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .sidebar {overflow: scroll;
+        width: 250px;
+        height: 100vh;
+        background-color: #fff;
+        padding: 15px;
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        left: -250px; /* Hide sidebar by default */
+        transition: left 0.7s ease;
+        z-index: 1100; /* Ensure sidebar is above other elements */
+    }
+
+    .sidebar.active {
+        left: 0; /* Show sidebar when active */
+    }
+
+    .sidebar h2 {
+        color: #000;
+        text-align: center;
+        margin-top: 70px; /* Adjust for fixed navbar */
+    }
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .sidebar ul li {
+        margin: 20px 0;
+        position: relative;
+    }
+
+    .sidebar ul li a {
+        color: #000;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+        background-color: #ddd;
+        color: gold;
+    }
+
+    .sidebar ul li .dropdown-content {
+        display: none;
+        background-color: #f4f4f4;
+        list-style-type: none;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .sidebar ul li .dropdown-content a {
+        padding: 10px;
+        color: #000;
+        display: block;
+    }
+
+    .sidebar ul li .dropdown-content a:hover {
+        background-color: #fff;
+        color:#FFEB80;
+    }
+
+    .sidebar ul li.active .dropdown-content {
+        display: block;
+    }
+
+    .sidebar .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: #333;
+        color: white;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .content {
+        margin-left: 250px;
+        padding: 20px;
+        flex-grow: 1;
+        transition: margin-left 0.3s ease;
+    }
+
+
+    .toggle-btn {
+        position: absolute;
+        top: 65px;
+        left: 20px;
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: left 0.3s ease;
+        z-index: 1050; /* Ensure toggle button is above other elements */
+    }
+
+    .navbar .nav-toggle-btn {
+        display: none;
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 11px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            left: -100%; /* Hide sidebar by default on small screens */
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .content {
+            margin-left: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .navbar .nav-buttons {
+            display: none; /* Hide nav buttons by default */
+        }
+
+        .navbar .nav-buttons.active {
+            display: flex; /* Show nav buttons when active */
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: white;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .nav-link, .navbar .link {
+            margin: 5px 0;
+            padding: 5px 10px;
+            border-radius: 40px;
+            margin-left: 10px;
+        }
+
+        .navbar .nav-toggle-btn {
+            display: block;
+            left: 30px;
+            margin-right: 40px;
+        }
+
+        .nav-toggle-btn {
+            right: 5%;
+        }
+
+        .toggle-btn {
+            top: 70px;
+            left: 10px;
+        }
+.footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        max-width: 200px;
+        margin: auto;
+        padding: 0 5px;
+    }
+
+    }
+.card-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+        max-width: 1400px;
+        margin: auto; 
+        margin-top: 80px;
+        margin-bottom: 60px; 
+    }
+    .card-container1 {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+        max-width: 1400px;
+        margin: auto;
+    }
+    .card {
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        overflow: hidden;
+        text-align: center;
+        background-color: white;
+    }
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+    .card-title {
+        font-size: 20px;
+        font-weight: 500px;
+        /* margin: 16px 0; */
+    }
+    .card-buttons {
+        display: flex;
+        justify-content: space-around;
+        margin: 16px 0;
+    }
+    .card-buttons button {
+        background-color: gold;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+    .card-buttons button:hover {
+        background-color: #CC9900;
+    }
+.footer {
+        background-color: #FFFDD0;
+        color: #000;
+        padding: 40px 0;
+        text-align: left;
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        max-width: 1600px;
+        margin: auto;
+        padding: 0 20px;
+    }
+
+    .footer-column {
+        flex:0;
+        min-width: 320px;
+        margin: 20px 0;
+    }
+
+    .footer-column h3 {
+        font-size: 23px;
+        margin-bottom: 20px;
+    }
+
+    .footer-column p,
+    .footer-column a {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #000;
+        text-decoration: none;
+    }
+
+    .footer-column a:hover {
+        color: gold;
+    }
+
+    .footer-column .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 23px;
+    }
+
+    .footer-column .social-icons a {
+        
+        width: 40px;
+        height: 40px;
+      
+        border-radius: 50%;
+        color: #000;
+        text-align: center;
+        line-height: 40px;
+        transition: background-color 0.3s;
+    }
+
+    .footer-column .social-icons a:hover {
+        color:#000; 
+   }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 10px;
+        padding: 10px;
+        border-top: 2px solid gold;
+        color: #000;
+        font-size: 14px;
+    }
+
+    .footer-bottom a {
+        color:#ffd700;
+        text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+        text-decoration: underline;
+    }
+
+
+   
+/* Popup Styles */
+.popup {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+display: flex;
+align-items: center;
+justify-content: center;
+visibility: hidden;
+opacity: 0;
+transition: visibility 0.3s, opacity 0.3s;
+z-index: 1200; /* Ensure popup is above other elements */
+}
+
+.popup.active {
+visibility: visible;
+opacity: 1;
+}
+
+.popup-content {
+background-color: white;
+padding: 20px;
+border-radius: 8px;
+width: 80%;
+max-width: 600px;
+text-align: center;
+}
+
+.popup-content img {
+max-width: 100%;
+height: auto;
+}
+
+.popup-content h2 {
+margin-top: 0;
+}
+
+.popup-close {
+position: absolute;
+top: 10px;
+right: 10px;
+background-color: #333;
+color: white;
+border: none;
+font-size: 20px;
+cursor: pointer;
+padding: 5px 10px;
+border-radius: 50%;
+}
+.banner { 
+width: 130%;
+max-height: 550px;
+object-fit: fill;
+display: block;
+margin: 50px; 
+padding: 0;
+margin-left: -27%; margin-right: 10%; margin-bottom: 1%;
+}
+/* CSS for Get Started button */
+.getstart {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-bottom: 60px; /* Adjust the margin as needed */
+}
+
+.getstart-link {   
+border: 2px solid #030303;
+display: inline-block;
+background-color: rgb(37, 188, 226); 
+color: white; 
+padding: 15px 20px; 
+font-size: 20px;
+font-weight: bold; 
+text-transform: uppercase;
+text-decoration: none; 
+border-radius: 50px; 
+transition: background-color 0.3s, color 0.3s; 
+}
+
+.getstart-link:hover {
+background-color: #e8b419; 
+color: white; 
+}
+@media (max-width: 768px) {
+        .getstart-link {
+            padding: 8px 12px; 
+            font-size: 12px; 
+            border-radius: 25px; 
+        }
+    }
+.container1 {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+padding: 20px;
+}
+
+.card1 { 
+border: 2px solid #000000;
+border-radius: 30px;
+padding: 15px;
+margin: 10px;
+text-align: center;
+width: calc(25% - 80px);
+box-sizing: border-box;
+min-height: 320px;
+cursor: pointer;
+}
+
+.card1 h2 {
+font-size: 20px;
+margin-bottom: 10px;
+font-weight: 600;
+}
+
+.card1 p {
+font-size: 16px;
+line-height: 1.5;
+}
+
+.card1 img {
+width: 50px;
+height: 50px;
+margin-bottom: 10px;
+}
+
+.image-container1 {
+width: 400px;
+height: 400px;
+margin: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.image-container1 img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 10px;
+}
+
+.title1 {
+font-size: 34px;
+font-weight: bold;
+text-align: center;
+margin: 20px 0;
+
+}
+
+.description1 {
+font-size: 15px;
+line-height: 1.5;
+text-align: center;
+margin-bottom: 30px;
+padding: 0 20px;
+width: 85%;
+margin: auto;
+}
+
+@media (max-width: 768px) {
+.card1 {
+width: 100%;
+min-height: 200px;
+}
+
+.image-container1 {
+width: 100%;
+height: auto;
+}
+}
+button a.course-link {
+all: unset; 
+display: block; 
+text-align: center; 
+width: 100%;
+height: 100%; 
+}
+
+button a.course-link:hover {
+background-color: inherit; 
+color: inherit; 
+}
+    .navbar h1 {
+        font-size: 1.5rem; 
+        margin: 0; 
+        padding: 0; 
+        cursor: pointer;
+    }
+    .sub-logo {
+        color: gold;
+        font-weight: 600;
+    }
+
+.hero {
+background-color: #f0f0f0;
+padding: 30px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: row; 
+}
+
+.hero img {
+width: 350px;
+height: 350px;
+display: block;
+margin: 0 auto;
+border-radius: 50%;
+}
+
+.hero h1 {
+font-size: 45px;
+font-weight: 600;
+}
+
+@media (max-width: 768px) {
+.hero {
+    flex-direction: column; 
+}
+.hero h1{
+    font-size: 18px;
+    font-weight: 600;
+}
+.hero p{
+font-size: 16px;
+}
+.hero img {
+    margin-left: 0px;
+    margin-top: 45px;
+    /* margin-bottom: 20px;  */
+    height: 300px;
+    width: 300px;
+}
+}
+.get-started {
+background: none;
+border: none;
+padding: 0;
+margin: 0;
+font: inherit;
+color: inherit;
+cursor: pointer;
+text-decoration: none; 
+display: inline-block;
+border: 2px solid black;
+border-radius: 30px;
+padding: 10px;
+margin-top: 13px;
+}
+.get-started:hover {
+background: #f7d675 ;
+transition: 0.5s;
+
+}
+
+.get-started a {
+color: inherit;
+text-decoration: none;
+font-weight: 700;
+}
+.main{
+    margin-top: 80px;
+    padding: 20px;
+}
+
+</style>
+<body>
+
+    <div class="navbar">
+        <h1> <span class="sub-logo">Nox</span>Network</h1>
+        <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
+        <div class="nav-buttons">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/dashboard/" class="nav-link">Courses</a>
+            <a href="/about/" class="nav-link">About</a>
+            <a href="/contact/" class="nav-link">Contact</a>
+           <a href="/login/" class="link">Login</a>
+            <a href="/signup/" class="link">SignUp</a>
+        </div>
+    </div>
+
+    <div class="main" >
+        <h1>Shipping & Delivery Policy</h1>
+    <p>Last updated on Jun 8th 2024</p>
+
+    <p>Shipping is not applicable for business.</p>
+
+    <p><strong>Disclaimer:</strong> The above content is created at Chandru Hanumantha's sole discretion. Razorpay shall not be liable for any content provided here and shall not be responsible for any claims and liability that may arise due to merchant’s non-adherence to it.</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>The NOX NETWORK</h3>
+                <p>The Nox Network is laying the groundwork for learners of all ages, offering a platform where individuals can come together to sharpen their skills and expand their knowledge.</p>
+	                <div class="social-icons">
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/facebook-new.png" alt="Facebook"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/instagram-new.png" alt="Instagram"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/youtube-play.png" alt="YouTube"></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <a href="/">Home</a><br>
+                <a href="/dashboard/">Course</a><br>
+                <a href="/contact/">Contact Us</a><br>
+                <a href="/dashboard/">Enroll Now</a><br>
+                 <a href="/about/">About Us</a><br>
+                <a href="/login/">Login</a>
+            </div>
+            <div class="footer-column">
+                <h3>Policys</h3>
+                <a href="/returnpolicy/">Return Policy</a><br>
+                <a href="/termsandcondition/">Terms And Condition</a><br>
+                <a href="/privacypolicy/">Privacy Policy</a> <br>
+                <a href="/shipping/">Shipping</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            All Rights Reserved © 2024 | <a href="/">Nox Network</a>
+        </div>
+    </footer>
+</body>
+</html>
