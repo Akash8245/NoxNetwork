@@ -4,7 +4,7 @@ import string
 from django.contrib.auth.hashers import make_password
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-
+ 
 def generate_referral_code(length=8):
     characters = string.ascii_letters + string.digits
     return ''.join(random.choice(characters) for _ in range(length))
@@ -26,9 +26,12 @@ class User(models.Model):
     token_created_at = models.DateTimeField(null=True, blank=True)
     last_login = models.DateTimeField(null=True, blank=True)
     reset_password_token = models.CharField(max_length=100, blank=True, null=True)
-
     settlement_amt = models.IntegerField(default=0)
     overall_earnings = models.IntegerField(default=0)
+
+    razorpay_payment_id_1 = models.CharField(max_length=255, blank=True, null=True)
+    razorpay_payment_id_2 = models.CharField(max_length=255, blank=True, null=True)
+    razorpay_payment_id_3 = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return f"{self.name}"
@@ -39,7 +42,7 @@ class Course(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.title}"
+        return f"{self.title}" 
 
 @receiver(pre_save, sender=User)
 def pre_save_user(sender, instance, **kwargs):

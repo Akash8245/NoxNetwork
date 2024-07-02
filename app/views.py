@@ -23,6 +23,17 @@ from django.views import View
 from .models import User
 from django.contrib.auth.hashers import make_password
 from django.conf import settings
+import razorpay
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+import os 
+from dotenv import load_dotenv
+import logger
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
+load_dotenv()
 
 # Home Page
 class Home(APIView):
@@ -204,6 +215,12 @@ class PrivacyPolicy(APIView):
     def get(self,request):
         return render(request,'extras/privacy_policy.html')
     
+#Shipping
+class Shipping(APIView):
+    def get(self,request):
+        return render(request,'extras/shipping.html')
+
+    
 # User Dashboard
 class Dashboard(APIView):
     def get(self, request):
@@ -246,18 +263,198 @@ class CourseView(APIView):
             user_id = access_token['user_id']
             user = User.objects.get(pk=user_id)
             
-            if course_id == 1 and user.course1_purchased:
-                return render(request, 'courses/course1.html', {"user": user})
-            elif course_id == 2 and user.course2_purchased:
-                return render(request, 'courses/course2.html', {"user": user})
-            elif course_id == 3 and user.course3_purchased:
-                return render(request, 'courses/course3.html', {"user": user})
-            else:
-                return render(request,'courses/course_error.html')
-        except TokenError:
-            return redirect('/login/')
+            # Course 1
+            if course_id == 1:
+                if user.course1_purchased:
+                    return render(request, 'courses/course1.html', {"user": user})
+                elif user.razorpay_payment_id_1:
+                    user.course1_purchased = True
+                    user.save()
+                    return render(request, 'courses/course1.html', {"user": user})
+                elif user.razorpay_payment_id_2:
+                    user.course1_purchased = True
+                    user.save()
+                    return render(request, 'courses/course1.html', {"user": user})
+                elif user.razorpay_payment_id_3:
+                    user.course1_purchased = True
+                    user.save()
+                    return render(request, 'courses/course1.html', {"user": user})
+                else:
+                    return render(request, 'payment/payment_page.html')
+            
+            # Course 2
+            elif course_id == 2:
+                if user.course2_purchased:
+                    return render(request, 'courses/course2.html', {"user": user})
+                elif user.razorpay_payment_id_2:
+                    user.course2_purchased = True 
+                    user.save()
+                    return render(request, 'courses/course2.html', {"user": user})
+                elif user.razorpay_payment_id_3:
+                    user.course2_purchased = True 
+                    user.save()
+                    return render(request, 'courses/course2.html', {"user": user})
+                else:
+                    return render(request, 'payment/payment_page_2.html')
+            
+            # Course 3
+            elif course_id == 3:
+                if user.course3_purchased:
+                    return render(request, 'courses/course3.html', {"user": user})
+                elif user.razorpay_payment_id_3:
+                    user.course3_purchased = True  
+                    user.save()
+                    return render(request, 'courses/course3.html', {"user": user})
+                else:
+                    return render(request, 'payment/payment_page_3.html')
+        
+        except (TokenError, User.DoesNotExist):
+            response = redirect('/login/')
+            response.delete_cookie('access')
+            return response
 
-#Shipping
-class Shipping(APIView):
+razorpay_client = razorpay.Client(auth=(os.getenv('KEY_ID'), os.getenv('KEY_SECRET')))
+
+# Payment 
+class Payment(APIView):
     def get(self,request):
-        return render(request,'extras/shipping.html')
+        return render(request, 'payment/payment_page.html')
+    
+    def post(self,request):
+        amount = 50000
+        currency = 'INR'
+        payment = razorpay_client.order.create({'amount':amount,'currency':currency,'payment_capture':'1'})
+
+        return render(request,'payment/payment_page.html')
+    
+    
+# Payment Success Callback 
+class Payment_success(APIView):
+    def get(self, request):
+        return render(request, 'payment/payment_success.html')
+
+    def post(self, request):
+        razorpay_payment_id = request.data.get('razorpay_payment_id')
+
+        token = request.COOKIES.get('access')
+        if not token:
+            return Response({"error": "User not authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
+
+        try:
+            access_token = AccessToken(token)
+            user_id = access_token['user_id']
+            user = User.objects.get(pk=user_id)
+            
+            # Update user's payment ID
+            user.razorpay_payment_id_1 = razorpay_payment_id
+            user.save()
+
+            # Update MLM earnings
+            if user.referred_by:
+                try:
+                    referring_user = User.objects.get(referral_code=user.referred_by)
+                    referring_user.settlement_amt += 300
+                    referring_user.overall_earnings += 300
+                    referring_user.save()
+
+                    if referring_user.referred_by:
+                        try:
+                            second_level_user = User.objects.get(referral_code=referring_user.referred_by)
+                            second_level_user.overall_earnings += 100
+                            second_level_user.save()
+                        except User.DoesNotExist:
+                            pass
+                except User.DoesNotExist:
+                    pass
+
+            return render(request, 'payment/payment_success.html')  
+        except (TokenError, User.DoesNotExist):
+            return Response({"error": "Invalid token or user does not exist"}, status=status.HTTP_401_UNAUTHORIZED)
+    
+# Payment Success Callback 2nd Course
+class Payment_success_2nd(APIView):  
+    def get(self, request):
+        return render(request, 'payment/payment_success.html')
+
+    def post(self, request):
+        razorpay_payment_id = request.data.get('razorpay_payment_id')
+
+        token = request.COOKIES.get('access')
+        if not token:
+            return Response({"error": "User not authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
+
+        try:
+            access_token = AccessToken(token)
+            user_id = access_token['user_id']
+            user = User.objects.get(pk=user_id)
+            
+            # Update user's payment ID
+            user.razorpay_payment_id_2 = razorpay_payment_id
+            user.course2_purchased = True 
+            user.save()
+
+            # Update MLM earnings
+            if user.referred_by:
+                try:
+                    referring_user = User.objects.get(referral_code=user.referred_by)
+                    referring_user.settlement_amt += 300
+                    referring_user.overall_earnings += 300
+                    referring_user.save()
+
+                    if referring_user.referred_by:
+                        try:
+                            second_level_user = User.objects.get(referral_code=referring_user.referred_by)
+                            second_level_user.overall_earnings += 100
+                            second_level_user.save()
+                        except User.DoesNotExist:
+                            pass
+                except User.DoesNotExist:
+                    pass
+
+            return render(request, 'payment/payment_success.html')  
+        except (TokenError, User.DoesNotExist):
+            return Response({"error": "Invalid token or user does not exist"}, status=status.HTTP_401_UNAUTHORIZED)
+        
+# Payment Success Callback 3rd Course
+class Payment_success_3rd(APIView): 
+    def get(self, request):
+        return render(request, 'payment/payment_success.html')
+
+    def post(self, request):
+        razorpay_payment_id = request.data.get('razorpay_payment_id')
+
+        token = request.COOKIES.get('access')
+        if not token:
+            return Response({"error": "User not authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
+
+        try:
+            access_token = AccessToken(token)
+            user_id = access_token['user_id']
+            user = User.objects.get(pk=user_id)
+            
+            # Update user's payment ID
+            user.razorpay_payment_id_3 = razorpay_payment_id
+            user.course3_purchased = True  # Update purchase status
+            user.save()
+
+            # Update MLM earnings
+            if user.referred_by:
+                try:
+                    referring_user = User.objects.get(referral_code=user.referred_by)
+                    referring_user.settlement_amt += 300
+                    referring_user.overall_earnings += 300
+                    referring_user.save()
+
+                    if referring_user.referred_by:
+                        try:
+                            second_level_user = User.objects.get(referral_code=referring_user.referred_by)
+                            second_level_user.overall_earnings += 100
+                            second_level_user.save()
+                        except User.DoesNotExist:
+                            pass
+                except User.DoesNotExist:
+                    pass
+
+            return render(request, 'payment/payment_success.html')  
+        except (TokenError, User.DoesNotExist):
+            return Response({"error": "Invalid token or user does not exist"}, status=status.HTTP_401_UNAUTHORIZED)

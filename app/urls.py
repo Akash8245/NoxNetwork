@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import Home,Signup,Login,Dashboard,CourseView,VerifyEmail,ForgotPasswordRequest,ResetPassword,Logout,About,ContactUs,ReturnPolicy,TermsAndCondition,PrivacyPolicy,Shipping
+from .views import Home,Signup,Login,Dashboard,CourseView,VerifyEmail,ForgotPasswordRequest,ResetPassword,Logout,About,ContactUs,ReturnPolicy,TermsAndCondition,PrivacyPolicy,Shipping,Payment,Payment_success,Payment_success_2nd,Payment_success_3rd
 
 urlpatterns = [
     path('', Home.as_view()),
@@ -18,4 +18,9 @@ urlpatterns = [
     path('verify-email/', VerifyEmail.as_view(), name='verify_email'),
     path('forgot-password/', ForgotPasswordRequest.as_view(), name='forgot_password_request'),
     path('reset-password/', ResetPassword.as_view(), name='reset_password'),
+    path('payment1/',Payment.as_view()),
+    
+    path('payment_success/', Payment_success.as_view()),
+    path('payment_success_2nd/', Payment_success_2nd.as_view()),
+    path('payment_success_3rd/', Payment_success_3rd.as_view()),
 ]

@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoxNetwork | Course 3</title>
     {% load static %}
     <link rel="icon" href="{% static 'fav.svg' %}" type="image/svg+xml">
-    <title>NoxNetwork</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
+        *{
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -26,6 +32,9 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             z-index: 1000;
         }
+        .navbar h1{
+            font-weight:600 ;
+        }
 
         .logo {
             height: 40px;
@@ -33,7 +42,7 @@
 
         .nav-buttons {
             display: flex;
-            flex: 1;margin-right: -250px;
+            flex: 1;
             justify-content: center;
         }
 
@@ -47,8 +56,10 @@
 
         .link {
             background-color: lightblue;
-            border: 2px solid black;
+            border: 1px solid black;
             border-radius: 50px;
+            width: 60px;
+            text-align: center;
         }
 
         .nav-link:hover {
@@ -61,12 +72,9 @@
         }
 
         .content {
-            padding-top: 70px; 
+            padding-top: 70px; /* Space for fixed navbar */
             padding-left: 20px;
             padding-right: 20px;
-            max-width: 1200px; 
-            margin: auto; 
-            transition: margin-left 0.3s ease;
         }
 
         .sidebar {overflow: scroll;
@@ -133,7 +141,7 @@
 
         .sidebar ul li .dropdown-content a:hover {
             background-color: #fff;
-color:#FFEB80;
+            color:#FFEB80;
         }
 
         .sidebar ul li.active .dropdown-content {
@@ -181,7 +189,8 @@ color:#FFEB80;
             padding: 11px 20px;
             cursor: pointer;
             border-radius: 5px;
-            margin-left: 20px;margin-right: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
         }
 
         @media (max-width: 768px) {
@@ -217,15 +226,16 @@ color:#FFEB80;
             }
 
             .navbar .nav-link, .navbar .link {
-                margin: 10px 0;
-                padding: 10px 15px;
-                border-radius: 0;
+                margin: 5px 0;
+                padding: 5px 10px;
+                border-radius: 40px;
+                margin-left: 10px;
             }
 
             .navbar .nav-toggle-btn {
                 display: block;
                 left: 30px;
-                margin-right: 30px;
+                margin-right: 40px;
             }
 
             .nav-toggle-btn {
@@ -252,13 +262,23 @@ color:#FFEB80;
             flex-wrap: wrap;
             gap: 20px;
             max-width: 1400px;
-            /* margin: auto; */
+            margin: auto; 
+            margin-top: 80px;
+            margin-bottom: 60px; 
+        }
+        .card-container1 {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1400px;
+            margin: auto;
         }
         .card {
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 250px;
+            width: 300px;
             overflow: hidden;
             text-align: center;
             background-color: white;
@@ -268,9 +288,9 @@ color:#FFEB80;
             height: auto;
         }
         .card-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 500px;
-            padding: 10px;
+            /* margin: 16px 0; */
         }
         .card-buttons {
             display: flex;
@@ -352,15 +372,15 @@ color:#FFEB80;
 
         .footer-bottom {
             text-align: center;
-            margin-top: 20px;
-            padding: 20px;
-            border-top: 1px solid gold;
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 2px solid gold;
             color: #000;
             font-size: 14px;
         }
 
         .footer-bottom a {
-            color:gold;
+            color:#ffd700;
             text-decoration: none;
         }
 
@@ -369,43 +389,182 @@ color:#FFEB80;
         }
 
 
-.navbar-profile {
-    position: relative;
-    display: flex; margin-left: 100px;
+       
+    /* Popup Styles */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
     align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
+    z-index: 1200; /* Ensure popup is above other elements */
 }
 
-.profile-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
+.popup.active {
+    visibility: visible;
+    opacity: 1;
 }
 
-.dropdown-menu {
-    display: none;
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.popup-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.popup-content h2 {
+    margin-top: 0;
+}
+
+.popup-close {
     position: absolute;
-    left: 0; /* Align to the left corner of the navbar */
-    top: 100%; /* Position below the navbar */
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
+    top: 10px;
+    right: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
 }
-
-.dropdown-menu a {
+.banner { 
+    width: 130%;
+    max-height: 550px;
+    object-fit: fill;
     display: block;
-    padding: 10px 20px;
-    color: #333;
-    text-decoration: none;
+    margin: 50px; 
+    padding: 0;
+    margin-left: -27%; margin-right: 10%; margin-bottom: 1%;
+}
+/* CSS for Get Started button */
+.getstart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px; /* Adjust the margin as needed */
 }
 
-.dropdown-menu a:hover {
-    background-color: #f1f1f1;
+.getstart-link {   
+    border: 2px solid #030303;
+    display: inline-block;
+    background-color: rgb(37, 188, 226); 
+    color: white; 
+    padding: 15px 20px; 
+    font-size: 20px;
+    font-weight: bold; 
+    text-transform: uppercase;
+    text-decoration: none; 
+    border-radius: 50px; 
+    transition: background-color 0.3s, color 0.3s; 
 }
 
-.dropdown-menu.show {
-    display: block;
+.getstart-link:hover {
+    background-color: #e8b419; 
+    color: white; 
+}
+@media (max-width: 768px) {
+            .getstart-link {
+                padding: 8px 12px; 
+                font-size: 12px; 
+                border-radius: 25px; 
+            }
+        }
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.card1 { 
+  border: 2px solid #000000;
+  border-radius: 30px;
+  padding: 15px;
+  margin: 10px;
+  text-align: center;
+  width: calc(25% - 80px);
+  box-sizing: border-box;
+  min-height: 320px;
+  cursor: pointer;
+}
+
+.card1 h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.card1 p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.card1 img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.image-container1 {
+  width: 400px;
+  height: 400px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.title1 {
+  font-size: 34px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+
+}
+
+.description1 {
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+  width: 85%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .card1 {
+    width: 100%;
+    min-height: 200px;
+  }
+
+  .image-container1 {
+    width: 100%;
+    height: auto;
+  }
 }
 button a.course-link {
     all: unset; 
@@ -419,7 +578,7 @@ button a.course-link:hover {
     background-color: inherit; 
     color: inherit; 
 }
-.navbar h1 {
+        .navbar h1 {
             font-size: 1.5rem; 
             margin: 0; 
             padding: 0; 
@@ -427,64 +586,91 @@ button a.course-link:hover {
         }
         .sub-logo {
             color: gold;
+            font-weight: 600;
         }
-        .logout{
-            background: rgb(63, 63, 63);
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 5px 10px;
-            margin-left: 5px;
-            margin-bottom: 5px;
-            transition: background-color 0.3s, color 0.3s;
-            border-radius: 10px;
-            width: 70px;
-        }
-        .dash{
 
-            margin-top: 10px;
-            font-size: 18px;
-            }
+    .hero {
+    background-color: #f0f0f0;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; 
+}
 
-            .copy-btn {
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-top: 10px;
-            border-radius: 4px;
-        }
-        .copy-btn.copied {
-            background-color: #ddd;
-            color: grey; 
-        }
-        #inviteLink{
-            width: 200px;
-            outline: none;
-            padding: 5px;
-            font-weight: 400;
-            vertical-align: top;
-        }
-        .earning-card{
-            min-height: 80px;
-            width: 180px;
-            border: 2px solid black;
-            margin: 5px;
-            padding: 10px;
-            text-align: center;
-            border-radius: 10px;
-        }
-        .earnings-container{
-            display: flex;
-        }
+.hero img {
+    width: 350px;
+    height: 350px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.hero h1 {
+    font-size: 45px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column; 
+    }
+    .hero h1{
+        font-size: 18px;
+        font-weight: 600;
+    }
+  .hero p{
+    font-size: 16px;
+  }
+    .hero img {
+        margin-left: 0px;
+        margin-top: 45px;
+        /* margin-bottom: 20px;  */
+        height: 300px;
+        width: 300px;
+    }
+}
+.get-started {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none; 
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 10px;
+    margin-top: 13px;
+
+}
+
+
+.get-started:hover {
+    background: #f7d675 ;
+    transition: 0.5s;
+
+}
+
+.get-started a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 700;
+}
+.center{
+    width: 500px;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+
     </style>
 </head>
-<body> {% load static %}
+<body>
+    {% load static %}
     <div class="navbar">
         <h1> <span class="sub-logo">Nox</span>Network</h1>
         <button class="nav-toggle-btn" onclick="toggleNavButtons()">☰</button>
@@ -493,73 +679,28 @@ button a.course-link:hover {
             <a href="/dashboard/" class="nav-link">Courses</a>
             <a href="/about/" class="nav-link">About</a>
             <a href="/contact/" class="nav-link">Contact</a>
-            <a href="/logout/" class="logout" >Logout →</a>
-             
+            <a href="/dashboard/" class="nav-link" >Dashboard</a>
         </div>
     </div>
 
-<div class="content" id="content">       
+    <div class="center">
+        <form class="text-center border border-light p-5" action="/payment_success_3rd/" method="POST">
+            {% csrf_token %}
+            <h1>Web Development + Canva + Social Media Course  </h1>
+            <p class="mb-3">Price :- 1399 </p>
+            <input type="name" name="name" id="name" required class="form-control mb-4" placeholder="Name">
+            <br>
+            <br>
+            <!-- RAZORPAY INTEGRATION HERE --> 
+            <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_HzVHCciJeiehFb"
+                data-amount="139900 " data-currency="INR" data-order_id="{{payment.id}}" data-buttontext="Pay with Razorpay"
+                data-name="NoxNetwork" data-description="Purchase Course by NoxNetwork - WebDevelopment "
+                data-image="https://example.com/your_logo.jpg" data-prefill.name="PC" data-prefill.email="pc@studygyaan.com"
+                data-theme.color="#FBE122"></script>
+        </form>
+    </div>
 
-<h1>‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </h1>
-<div class="dash">
-      <div>
-        <h1>Dashboard →</h1>
-        <p> <b>Hello, {{ user.name }} !</b></p> </div>
-          <p><b>Your invite link:</b><br>
-            <input type="text" id="inviteLink" value="{{ base_url }}/signup/?referred_by={{ user.referral_code }}" readonly>
-        <br>
-        <button class="copy-btn" onclick="copyToClipboard()">Copy Invite link</button>
-    </p>
-    
-        {% if referred_by_user %}
-        <p>You were referred by: {{ referred_by_user }}</p>
-        {% endif %}
-        <p><b>People you have refered :-</b> {{ user.no_people_refered }}</p>
-      </div>
-
-      <div class="earnings-container">
-        <section  class="earning-card">
-            <b>Settlement amount </b>
-            <p> <b>₹{{ user.settlement_amt }}</b> </p>
-        </section>
-
-        <section class="earning-card">
-           <b> Overall Earnings </b>
-           <p> <b>₹{{ user.overall_earnings }}</b> </p>
-        </section>
-      </div>
-
-      <br>
-      <h1>Courses →</h1>
-      <div class="card-container">
-        <div class="card">
-            <img src="{% static 'webdev.jpeg' %}" alt="Image 1">
-            <div class="card-title">Web Development</div>
-            <div class="card-buttons">
-                <button><a href="/course/1" class="course-link">₹ 499 Go to Course ↗</a></button>
-    
-            </div>
-        </div> <div class="card">
-            <img src="{% static 'comming.jpeg' %}" alt="Image 1">
-            <div class="card-title">Web Development + Canva</div>
-            <div class="card-buttons">
-                <button><a href="/course/2" class="course-link">₹ 999 Go to Course ↗</a></button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="{% static 'comming.jpeg' %}" alt="Image 2">
-            <div class="card-title">Web Development + Canva + Social media</div>
-            <div class="card-buttons">
-                <button><a href="/course/3" class="course-link">₹ 1399 Go to Course ↗</a></button>
-            </div>
-        </div>  
-     </div>  
- </div>
-
-
-
-
-  <footer class="footer">
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-column">
                 <h3>The NOX NETWORK</h3>
@@ -591,88 +732,8 @@ button a.course-link:hover {
             </div>
         </div>
         <div class="footer-bottom">
-            All Rights Reserved © 2024 | <a href="#">Nox Network</a>
+            All Rights Reserved © 2024 | <a href="/">Nox Network</a>
         </div>
     </footer>
-    <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById('sidebar');
-            var content = document.getElementById('content');
-            var navButtons = document.querySelector('.nav-buttons');
-            var navToggleBtn = document.querySelector('.nav-toggle-btn');
-            var sidebarToggleBtn = document.querySelector('.toggle-btn');
-            
-            sidebar.classList.toggle('active');
-            content.classList.toggle('shifted');
-            
-            if (sidebar.classList.contains('active')) {
-                navButtons.classList.remove('active');
-                navToggleBtn.style.display = 'none';
-            } else {
-                navToggleBtn.style.display = 'block';
-            }
-        }
-
-        function toggleNavButtons() {
-            var navButtons = document.querySelector('.nav-buttons');
-            var sidebar = document.getElementById('sidebar');
-            var sidebarToggleBtn = document.querySelector('.toggle-btn');
-            
-            navButtons.classList.toggle('active');
-            
-            if (navButtons.classList.contains('active')) {
-                sidebar.classList.remove('active');
-                sidebarToggleBtn.style.display = 'none';
-            } else {
-                sidebarToggleBtn.style.display = 'block';
-            }
-        }
-
-        function toggleDropdown(event) {
-            event.preventDefault();
-            var parentLi = event.target.parentElement;
-            parentLi.classList.toggle('active');
-        }
-    </script>
-    <script>document.addEventListener('DOMContentLoaded', function() {
-        const profileIcon = document.getElementById('profileIcon');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        
-        profileIcon.addEventListener('click', function() {
-            dropdownMenu.classList.toggle('show');
-        });
-    
-        // Close the dropdown if the user clicks outside of it
-        window.addEventListener('click', function(e) {
-            if (!profileIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
-    });
-
-    function copyToClipboard() {
-            var inviteLink = document.getElementById("inviteLink");
-            inviteLink.select();
-            
-            try {
-                var successful = document.execCommand("copy");
-                if (successful) {
-                    var button = document.querySelector(".copy-btn");
-                    button.innerText = "Copied!";
-                    button.classList.add("copied");
-
-                    // Reset button text after 2 seconds
-                    setTimeout(function() {
-                        button.innerText = "Copy Invite link";
-                        button.classList.remove("copied");
-                    }, 2000); // 2000 milliseconds = 2 seconds
-                } else {
-                    alert("Copying failed. Please try again.");
-                }
-            } catch (err) {
-                console.error("Unable to copy:", err);
-            }
-        }
-    </script>
 </body>
 </html>
