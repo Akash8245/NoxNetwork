@@ -6,6 +6,16 @@
     <title>Nox Network</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="canonical" href="https://www.noxnetwork.me/">
+    <meta name="keywords" content="NoxNetwork, noxnetwork, noxnetwork me, NoxNetwork me,NOXNETWORK , online earning, refer and earn ,online earning, online job, referal, affilate, earn, business">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Nox Network - Home">
+    <meta property="og:description" content="Nox Network offers a platform for E-Learning and also earn from Affiliate .">
+    <meta property="og:image" content="https://www.yourwebsite.com/path/to/image.jpg">
+    <meta property="og:url" content="https://www.noxnetwork.me/">
+    <meta property="og:type" content="NoxNetwork">
+
     {% load static %}
     <link rel="icon" href="{% static 'fav.svg' %}" type="image/svg+xml">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -662,6 +672,38 @@ button a.course-link:hover {
     font-weight: 700;
 }
 
+ .aff-title{
+        text-align: center;
+        font-weight: 600;
+}
+.aff-par{
+    width: 80%;
+    margin: auto;
+}
+.aff-card{
+    width: 250px;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 8px;
+    margin: 15px;
+    cursor: pointer;
+    transition:  0.2s ease;
+}
+.aff-card:hover{
+    width: 260px;
+    border: 4px solid black;
+}
+.aff-steps{
+    display: flex;
+    gap: 5;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 50px;
+}
+
+.aff-card-title{
+    font-weight: 700;
+}
 
     </style>
 </head>
@@ -715,13 +757,41 @@ button a.course-link:hover {
         <p>Our top-tier support system is available 24/7 for the Nox Network community. Whenever you need assistance, we're just a message away.</p>
       </div>
     </div>
+
+    <div class="aff-div" >
+        <h1 class="aff-title" >Affilate Earning From NoxNetwork </h1>
+        <p class="aff-par" >Exciting opportunities await at NoxNetwork! Introducing our Affiliate Program, where learning earns you rewards. Simply start by joining NoxNetwork and enrolling in a course. Then, share the knowledge with your friends and family. Each time someone you refer purchases a course, you earn rewards. It’s a great way to benefit from learning and sharing with others</p>
+        <div class="aff-steps" >
+
+            <div class="aff-card" >
+                <p class="aff-card-title" >Step : 1</p>
+                <p>Signup to NoxNetwork and purchase a course </p>
+            </div>
+
+            <div class="aff-card" >
+                <p class="aff-card-title" >Step : 2</p>
+                <p>Refer a friend/family from your referal link from Dashboard </p>
+            </div>
+
+            <div class="aff-card" >
+                <p class="aff-card-title" >Step : 3</p>
+                <p>Earn Up to 45% When a person joins from your Referal code </p>
+            </div>
+
+            <div class="aff-card" >
+                <p class="aff-card-title" >Step : 4</p>
+                <p>Earn Passive income when the person you reffered reffers another person </p>
+            </div>
+
+        </div>
+    </div>
     
     <div class="card-container">
     <div class="card">
         <img src="{% static 'webdev.jpeg' %}" alt="Image 1">
         <div class="card-title">Web Development</div>
         <div class="card-buttons">
-            <button><a href="/course/1" class="course-link">₹ 499 Go to Course ↗</a></button>
+            <button><a href="/course/1" class="course-link">₹ 599 Go to Course ↗</a></button>
 
         </div>
     </div> <div class="card">
@@ -735,7 +805,7 @@ button a.course-link:hover {
         <img src="{% static 'comming.jpeg' %}" alt="Image 2">
         <div class="card-title">Web Development + Canva + Social media</div>
         <div class="card-buttons">
-            <button><a href="/course/3" class="course-link">₹ 1399 Go to Course ↗</a></button>
+            <button><a href="/course/3" class="course-link">₹ 1499 Go to Course ↗</a></button>
         </div>
     </div>  
  </div>
@@ -748,7 +818,6 @@ button a.course-link:hover {
                 <p>The Nox Network is laying the groundwork for learners of all ages, offering a platform where individuals can come together to sharpen their skills and expand their knowledge.</p>
                 <strong>Contact :- </strong>
                 <p>Email : noxnetworkofficial@gmail.com </p>
-                <p>Phone : (+91) 9686635137 </p>
 	                <div class="social-icons">
                     <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/facebook-new.png" alt="Facebook"></a>
                     <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/instagram-new.png" alt="Instagram"></a>

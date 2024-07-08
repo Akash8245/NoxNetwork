@@ -360,6 +360,7 @@ class Payment_success(APIView):
                     if referring_user.referred_by:
                         try:
                             second_level_user = User.objects.get(referral_code=referring_user.referred_by)
+                            second_level_user.settlement_amt += 100
                             second_level_user.overall_earnings += 100
                             second_level_user.save()
                         except User.DoesNotExist:
@@ -397,14 +398,15 @@ class Payment_success_2nd(APIView):
             if user.referred_by:
                 try:
                     referring_user = User.objects.get(referral_code=user.referred_by)
-                    referring_user.settlement_amt += 300
-                    referring_user.overall_earnings += 300
+                    referring_user.settlement_amt += 600
+                    referring_user.overall_earnings += 600
                     referring_user.save()
 
                     if referring_user.referred_by:
                         try:
                             second_level_user = User.objects.get(referral_code=referring_user.referred_by)
-                            second_level_user.overall_earnings += 100
+                            second_level_user.settlement_amt += 200
+                            second_level_user.overall_earnings += 200
                             second_level_user.save()
                         except User.DoesNotExist:
                             pass
@@ -441,14 +443,15 @@ class Payment_success_3rd(APIView):
             if user.referred_by:
                 try:
                     referring_user = User.objects.get(referral_code=user.referred_by)
-                    referring_user.settlement_amt += 300
-                    referring_user.overall_earnings += 300
+                    referring_user.settlement_amt += 800
+                    referring_user.overall_earnings += 800
                     referring_user.save()
 
                     if referring_user.referred_by:
                         try:
                             second_level_user = User.objects.get(referral_code=referring_user.referred_by)
-                            second_level_user.overall_earnings += 100
+                            second_level_user.settlement_amt += 300
+                            second_level_user.overall_earnings += 300
                             second_level_user.save()
                         except User.DoesNotExist:
                             pass
@@ -458,3 +461,41 @@ class Payment_success_3rd(APIView):
             return render(request, 'payment/payment_success.html')  
         except (TokenError, User.DoesNotExist):
             return Response({"error": "Invalid token or user does not exist"}, status=status.HTTP_401_UNAUTHORIZED)
+        
+# Withdrawl Request 
+class Withdraw(APIView):
+    def get(self, request):
+        return render(request, "withdraw/withdraw.html")
+
+    def post(self, request):
+        name = request.data.get('name')
+        email = request.data.get('email')
+        upi = request.data.get('upi')
+
+        token = request.COOKIES.get('access')
+        if not token:
+            return redirect('/login/')
+        
+        try:
+            access_token = AccessToken(token)
+            user_id = access_token['user_id']
+            user = User.objects.get(pk=user_id)
+        except (TokenError, User.DoesNotExist):
+            response = redirect('/login/')
+            response.delete_cookie('access')
+            return response
+
+        # Send email
+        subject = 'Withdraw Request'
+        message = f'Name: {name}\nEmail: {email}\nUPI: {upi}'
+        from_email = 'noxnetworkofficial@gmail.com'
+        recipient_list = ['noxnetworkofficial@gmail.com']
+
+        try:
+            send_mail(subject, message, from_email, recipient_list)
+        except Exception as e:
+            print(f"Error sending email: {e}")
+            # Optionally log the error and show an error message
+            return Response({"error": "There was an error sending the email. Please try again later."}, status=500)
+
+        return render(request, "withdraw/withdraw.html") 
