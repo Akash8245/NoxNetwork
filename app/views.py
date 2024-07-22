@@ -496,6 +496,6 @@ class Withdraw(APIView):
         except Exception as e:
             print(f"Error sending email: {e}")
             # Optionally log the error and show an error message
-            return Response({"error": "There was an error sending the email. Please try again later."}, status=500)
+            return Response({"error": "There was an error sending the email :( "}, status=500)
 
         return render(request, "withdraw/withdraw.html") 
