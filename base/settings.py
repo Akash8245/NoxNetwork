@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-3&zuxpn+nq+xd0xkx=duzwurhsa8=5s60#+*p8xjiy@yyc6az4
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["127.0.0.1", "noxnetwork-1.onrender.com", "www.noxnetwork.me" "noxnetwork.me",]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -132,3 +132,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL')
+
