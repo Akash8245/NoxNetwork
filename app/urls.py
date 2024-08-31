@@ -20,8 +20,6 @@ urlpatterns = [
     path('reset-password/', ResetPassword.as_view(), name='reset_password'),
     path('payment1/',Payment.as_view()),
     path('withdraw/',Withdraw.as_view()),
-
-    
     path('payment_success/', Payment_success.as_view()),
     path('payment_success_2nd/', Payment_success_2nd.as_view()),
     path('payment_success_3rd/', Payment_success_3rd.as_view()),
