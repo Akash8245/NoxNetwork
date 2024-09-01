@@ -499,3 +499,4 @@ class Withdraw(APIView):
             return Response({"error": "There was an error sending the email :( "}, status=500)
 
         return render(request, "withdraw/withdraw.html") 
+    

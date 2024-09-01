@@ -238,7 +238,6 @@
         }
 
         .text-content {            
-
             max-width: 1200px;
             text-align: left;
         }
@@ -246,12 +245,14 @@
         .text-content h2 {
             margin-top: 0;
         }
+
         .navbar h1 {
             font-size: 1.5rem; 
             margin: 0; 
             padding: 0; 
             cursor: pointer;
         }
+
         .sub-logo {
             color: gold;
         }
@@ -275,7 +276,7 @@
     
 
     <div class="content">
-        <!-- <img src="{% static 'About.jpeg' %}" alt="Banner Image" class="banner"> -->
+        <!-- Removed the image line here -->
         <div class="text-content">
             <h2>Unlock Your Potential with NoxNetwork</h2>
             <p>Welcome to NoxNetwork, where the journey to mastering new skills and achieving personal growth begins. We believe everyone has hidden potential, ready to be unlocked through continuous learning and development. NoxNetwork is more than just a platform; it’s a philosophy, a journey, and a community focused on helping you reach your highest potential.</p>
@@ -296,68 +297,39 @@
                 <div class="social-icons">
                     <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/facebook-new.png" alt="Facebook"></a>
                     <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/instagram-new.png" alt="Instagram"></a>
-                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/youtube-play.png" alt="YouTube"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/twitter.png" alt="Twitter"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/linkedin.png" alt="LinkedIn"></a>
                 </div>
             </div>
+
             <div class="footer-column">
-                <h3>Support</h3>
-                <a href="/">Home</a><br>
-                <a href="/dashboard/">Course</a><br>
-                <a href="/contact/">Contact Us</a><br>
-                <a href="/dashboard/">Enroll Now</a><br>
-                 <a href="/about/">About Us</a><br>
-                <a href="/login/">Login</a>
+                <h3>Explore</h3>
+                <p><a href="/">Home</a></p>
+                <p><a href="/dashboard/">Courses</a></p>
+                <p><a href="/about/">About</a></p>
+                <p><a href="/contact/">Contact</a></p>
+                <p><a href="/login/">Login</a></p>
+                <p><a href="/signup/">SignUp</a></p>
             </div>
+
             <div class="footer-column">
-                <h3>Policys</h3>
-                <a href="/returnpolicy/">Return Policy</a><br>
-                <a href="/termsandcondition/">Terms And Condition</a><br>
-                <a href="/privacypolicy/">Privacy Policy</a>
+                <h3>Contact</h3>
+                <p><strong>Email:</strong> info@noxnetwork.com</p>
+                <p><strong>Phone:</strong> +123-456-7890</p>
+                <p><strong>Address:</strong> 123 Learning Avenue, Knowledge City, Educationland</p>
             </div>
         </div>
+
         <div class="footer-bottom">
-            All Rights Reserved © 2024 | <a href="#">Nox Network</a>
+            <p>© 2024 NoxNetwork. All rights reserved.</p>
+            <p>Designed and Developed by <a href="https://yourwebsite.com">Your Name</a></p>
         </div>
     </footer>
 
     <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById('sidebar');
-            var content = document.getElementById('content');
-            var navButtons = document.querySelector('.nav-buttons');
-            var navToggleBtn = document.querySelector('.nav-toggle-btn');
-            var sidebarToggleBtn = document.querySelector('.toggle-btn');
-            
-            sidebar.classList.toggle('active');
-            content.classList.toggle('shifted');
-            
-            if (sidebar.classList.contains('active')) {
-                navButtons.classList.remove('active');
-                navToggleBtn.style.display = 'none';
-            } else {
-                navToggleBtn.style.display = 'block';
-            }
-        }
-
         function toggleNavButtons() {
             var navButtons = document.querySelector('.nav-buttons');
-            var sidebar = document.getElementById('sidebar');
-            var sidebarToggleBtn = document.querySelector('.toggle-btn');
-            
             navButtons.classList.toggle('active');
-            
-            if (navButtons.classList.contains('active')) {
-                sidebar.classList.remove('active');
-                sidebarToggleBtn.style.display = 'none';
-            } else {
-                sidebarToggleBtn.style.display = 'block';
-            }
-        }
-
-        function toggleDropdown(event) {
-            event.preventDefault();
-            var parentLi = event.target.parentElement;
-            parentLi.classList.toggle('active');
         }
     </script>
 </body>
