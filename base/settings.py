@@ -2,6 +2,9 @@ from pathlib import Path
 from datetime import timedelta
 import os 
 from dotenv import load_dotenv
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
 
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,7 +12,7 @@ BASE_URL = 'noxnetwork-1.onrender.com'
 
 SECRET_KEY = 'django-insecure-3&zuxpn+nq+xd0xkx=duzwurhsa8=5s60#+*p8xjiy@yyc6az4'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -126,10 +129,14 @@ SIMPLE_JWT = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'     
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL')
+
+
+
+
 
