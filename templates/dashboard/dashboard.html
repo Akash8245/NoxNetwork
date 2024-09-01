@@ -493,6 +493,11 @@ button a.course-link:hover {
             padding: 10px;
             border-radius: 10px;
         }
+        .purchase-warning{
+            font-weight: 700;
+            color: red;
+            font-size: 25px;
+        }
     </style>
 </head>
 <body> {% load static %}
@@ -516,10 +521,17 @@ button a.course-link:hover {
       <div>
         <h1>Dashboard →</h1>
         <p> <b>Hello, {{ user.name }} !</b></p> </div>
-          <p><b>Your invite link:</b><br>
-            <input type="text" id="inviteLink" value="{{ base_url }}/signup/?referred_by={{ user.referral_code }}" readonly>
-        <br>
-        <button class="copy-btn" onclick="copyToClipboard()">Copy Invite link</button>
+            <!-- start -->
+            {% if user.course1_purchased or user.course2_purchased or user.course3_purchased %}
+            <p><b>Your invite link:</b><br>
+                <input type="text" id="inviteLink" value="{{ base_url }}/signup/?referred_by={{ user.referral_code }}" readonly>
+            <br>
+            <button class="copy-btn" onclick="copyToClipboard()">Copy Invite link</button>
+            {% else %}
+            <p class="purchase-warning" >Purchase a course to unlock Referal !</p>
+            {% endif %}
+            <!-- stop -->
+
     </p>
     
         {% if referred_by_user %}
@@ -573,8 +585,6 @@ button a.course-link:hover {
         </div>  
      </div>  
  </div>
-
-
 
   <footer class="footer">
         <div class="footer-container">
