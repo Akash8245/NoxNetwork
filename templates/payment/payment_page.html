@@ -686,16 +686,16 @@ button a.course-link:hover {
     <div class="center">
         <form class="text-center border border-light p-5" action="/payment_success/" method="POST">
             {% csrf_token %}
-            <h1>Web Development Course  </h1>
-            <p class="mb-3">Price :- 499 </p>
+            <h1>Silver bundle (Excel Course) </h1>
+            <p class="mb-3">Price :- 599 </p>
             <input type="name" name="name" id="name" required class="form-control mb-4" placeholder="Name">
             <br>
             <br>
             <!-- RAZORPAY INTEGRATION HERE --> 
             <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_live_1pbMt4Fan9z4YJ"
                 data-amount="59900 " data-currency="INR" data-order_id="{{payment.id}}" data-buttontext="Pay with UPI, Debit Card, Credit card"
-                data-name="NoxNetwork" data-description="Purchase Course by NoxNetwork - WebDevelopment "
-                data-image="https://ibb.co/YPW7YZj" data-prefill.name="PC" data-prefill.email="pc@studygyaan.com"
+                data-name="NoxNetwork" data-description="Purchase Course by NoxNetwork - Silver bundle "
+                data-image="https://i.pinimg.com/474x/d5/9f/36/d59f364f8b5629f3c9f502e2ad2a5728.jpg" data-prefill.name="PC" data-prefill.email="noxnetworkofficial@gmail.com"
                 data-theme.color="#FBE122"  ></script>
         </form>
     </div>
